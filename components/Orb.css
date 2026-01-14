@@ -1,0 +1,16 @@
+.orb-container {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* 큰 화면에서 Orb 크기 조정 */
+@media (min-width: 768px) {
+  .orb-container {
+    max-width: 85%;
+    max-height: 85%;
+    margin: auto;
+  }
+}
+
