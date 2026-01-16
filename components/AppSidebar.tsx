@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 interface AppSidebarProps {
   isOpen: boolean;
@@ -19,6 +20,7 @@ const AppSidebar = ({
   onMouseEnter,
   onMouseLeave,
 }: AppSidebarProps) => {
+  const router = useRouter();
   const [showTooltip, setShowTooltip] = useState(false);
 
   const handleSidebarClick = () => {
@@ -68,7 +70,7 @@ const AppSidebar = ({
                   }}
                   onMouseEnter={(e) => {
                     setShowTooltip(true);
-                    e.currentTarget.style.backgroundColor = 'rgba(15, 0, 45, 0.8)'; // 보라색 톤의 호버
+                    e.currentTarget.style.backgroundColor = 'rgba(30, 10, 70, 0.85)'; // 더 밝은 보라색 톤의 호버
                   }}
                   onMouseLeave={(e) => {
                     setShowTooltip(false);
@@ -107,13 +109,18 @@ const AppSidebar = ({
             <ul className="space-y-2">
               <li>
                 <a
-                  href="#"
+                  href="/"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    router.push("/");
+                    onClose();
+                  }}
                   className="block px-4 py-2 rounded-lg text-white transition-colors"
                   style={{
                     backgroundColor: 'transparent'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = 'rgba(15, 0, 45, 0.8)'; // 보라색 톤의 호버
+                    e.currentTarget.style.backgroundColor = 'rgba(30, 10, 70, 0.85)'; // 더 밝은 보라색 톤의 호버
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.backgroundColor = 'transparent';
@@ -124,13 +131,18 @@ const AppSidebar = ({
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/product"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    router.push("/product");
+                    onClose();
+                  }}
                   className="block px-4 py-2 rounded-lg text-white transition-colors"
                   style={{
                     backgroundColor: 'transparent'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = 'rgba(15, 0, 45, 0.8)'; // 보라색 톤의 호버
+                    e.currentTarget.style.backgroundColor = 'rgba(30, 10, 70, 0.85)'; // 더 밝은 보라색 톤의 호버
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.backgroundColor = 'transparent';
@@ -141,13 +153,18 @@ const AppSidebar = ({
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/docs"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    router.push("/docs");
+                    onClose();
+                  }}
                   className="block px-4 py-2 rounded-lg text-white transition-colors"
                   style={{
                     backgroundColor: 'transparent'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = 'rgba(15, 0, 45, 0.8)'; // 보라색 톤의 호버
+                    e.currentTarget.style.backgroundColor = 'rgba(30, 10, 70, 0.85)'; // 더 밝은 보라색 톤의 호버
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.backgroundColor = 'transparent';
@@ -158,13 +175,18 @@ const AppSidebar = ({
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/policy"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    router.push("/policy");
+                    onClose();
+                  }}
                   className="block px-4 py-2 rounded-lg text-white transition-colors"
                   style={{
                     backgroundColor: 'transparent'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = 'rgba(15, 0, 45, 0.8)'; // 보라색 톤의 호버
+                    e.currentTarget.style.backgroundColor = 'rgba(30, 10, 70, 0.85)'; // 더 밝은 보라색 톤의 호버
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.backgroundColor = 'transparent';
@@ -175,13 +197,18 @@ const AppSidebar = ({
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/company"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    router.push("/company");
+                    onClose();
+                  }}
                   className="block px-4 py-2 rounded-lg text-white transition-colors"
                   style={{
                     backgroundColor: 'transparent'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = 'rgba(15, 0, 45, 0.8)'; // 보라색 톤의 호버
+                    e.currentTarget.style.backgroundColor = 'rgba(30, 10, 70, 0.85)'; // 더 밝은 보라색 톤의 호버
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.backgroundColor = 'transparent';
@@ -192,19 +219,46 @@ const AppSidebar = ({
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    router.push("/contact");
+                    onClose();
+                  }}
                   className="block px-4 py-2 rounded-lg text-white transition-colors"
                   style={{
                     backgroundColor: 'transparent'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = 'rgba(15, 0, 45, 0.8)'; // 보라색 톤의 호버
+                    e.currentTarget.style.backgroundColor = 'rgba(30, 10, 70, 0.85)'; // 더 밝은 보라색 톤의 호버
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.backgroundColor = 'transparent';
                   }}
                 >
                   Contact
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/pricing"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    router.push("/pricing");
+                    onClose();
+                  }}
+                  className="block px-4 py-2 rounded-lg text-white transition-colors"
+                  style={{
+                    backgroundColor: 'transparent'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = 'rgba(30, 10, 70, 0.85)'; // 더 밝은 보라색 톤의 호버
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                  }}
+                >
+                  Pricing
                 </a>
               </li>
             </ul>

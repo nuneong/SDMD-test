@@ -13,12 +13,225 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* Custom checkbox styling for the reCAPTCHA look */
+.recaptcha-checkbox {
+  appearance: none;
+  background-color: #fff;
+  border: 2px solid #c1c1c1;
+  border-radius: 2px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.recaptcha-checkbox:checked {
+  border-color: #8b5cf6; /* Purple */
+}
+
+.recaptcha-checkbox:checked::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid #8b5cf6; /* Purple tick */
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* MOLFUSE Gradient and Animation - Using ORB colors only */
+/* ORB baseColor1: rgb(156, 67, 254) = #9c43fe */
+/* ORB baseColor2: rgb(76, 194, 233) = #4cc2e9 */
+/* ORB baseColor3: rgb(16, 20, 153) = #101499 */
+.molfuse-gradient {
+  background: linear-gradient(
+    135deg,
+    #9c43fe 0%,
+    #101499 25%,
+    #4cc2e9 50%,
+    #9c43fe 75%,
+    #101499 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 8s ease infinite;
+  position: relative;
+  filter: drop-shadow(0 0 20px rgba(156, 67, 254, 0.5)) drop-shadow(0 0 40px rgba(156, 67, 254, 0.3));
+}
+
+.molfuse-gradient::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(156, 67, 254, 0.8) 20%,
+    rgba(76, 194, 233, 0.8) 40%,
+    rgba(156, 67, 254, 0.8) 60%,
+    transparent 80%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: ray-sweep 4s linear infinite;
+  z-index: 1;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes ray-sweep {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Feature Box Border Animation */
+.feature-box-animated {
+  position: relative;
+}
+
+.feature-box-animated::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(156, 67, 254, 0.8) 20%,
+    rgba(76, 194, 233, 0.8) 40%,
+    rgba(156, 67, 254, 0.8) 60%,
+    transparent 80%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: border-sweep 3s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 0;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  padding: 2px;
+}
+
+.feature-box-animated:hover::before {
+  opacity: 1;
+}
+
+.feature-box-animated > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes border-sweep {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-in-out;
+}
+
+/* Custom validation message styling */
+input:invalid:not(:placeholder-shown):not(:focus) {
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+input:invalid:not(:placeholder-shown):not(:focus)::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #8b5cf6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Custom validation message popup */
+.custom-validation-message {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  padding: 8px 12px;
+  background: rgba(15, 15, 26, 0.95);
+  border: 1px solid rgba(139, 92, 246, 0.5);
+  border-radius: 8px;
+  color: #e2e8f0;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.custom-validation-message::before {
+  content: '!';
+  width: 20px;
+  height: 20px;
+  background: #8b5cf6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  flex-shrink: 0;
 }
 
