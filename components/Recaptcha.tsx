@@ -26,7 +26,7 @@ const Recaptcha: React.FC = () => {
   };
 
   return (
-    <div className="bg-[#222222] border border-[#3e3e3e] rounded-[4px] p-3 w-full flex items-center justify-between h-[74px]">
+    <div className="bg-[#222222] border border-[#3e3e3e] rounded-lg p-3 w-full flex items-center justify-between h-[74px]">
       <div className="flex items-center">
         <div className="flex items-center justify-center w-[24px] h-[24px] mr-2.5">
           <input

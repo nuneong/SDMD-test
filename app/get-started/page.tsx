@@ -8,6 +8,9 @@ const GetStartedPage = () => {
   const router = useRouter();
 
   const handleGoHome = () => {
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem("restoreHomeScroll", "true");
+    }
     router.push("/");
   };
 
@@ -39,7 +42,7 @@ const GetStartedPage = () => {
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-2xl px-4 py-12">
-        <div className="bg-[#111111] border border-gray-800/50 rounded-[30px] p-8 shadow-[0_0_20px_rgba(147,51,234,0.05)] relative overflow-hidden">
+        <div className="bg-[#111111] border border-gray-800/50 rounded-lg p-8 shadow-[0_0_20px_rgba(147,51,234,0.05)] relative overflow-hidden">
           {/* Subtle purple glow */}
           <div className="absolute -top-10 -left-10 w-32 h-32 bg-purple-600/10 rounded-full blur-2xl pointer-events-none"></div>
           
@@ -72,7 +75,7 @@ const GetStartedPage = () => {
             <div className="flex flex-col gap-4 mt-4">
               <button
                 onClick={handleContinue}
-                className="w-full bg-[#8b5cf6] hover:bg-[#7c3aed] text-white font-bold text-base py-3 rounded-xl shadow-[0_4px_14px_rgba(139,92,246,0.3)] hover:shadow-[0_6px_20px_rgba(139,92,246,0.4)] transition-all active:scale-[0.98]"
+                className="w-full bg-[#8b5cf6] hover:bg-[#7c3aed] text-white font-bold text-base py-3 rounded-lg shadow-[0_4px_14px_rgba(139,92,246,0.3)] hover:shadow-[0_6px_20px_rgba(139,92,246,0.4)] transition-all active:scale-[0.98]"
               >
                 {isLoggedIn ? "메인 랜딩 페이지로 이동" : "로그인하고 시작하기"}
               </button>

@@ -27,7 +27,7 @@ const BenefitSection = () => {
   return (
     <section
       ref={ref}
-      className={`min-h-screen flex items-center justify-center px-4 py-20 transition-opacity duration-1000 ${
+      className={`min-h-screen flex items-center justify-center px-4 pt-10 pb-5 transition-opacity duration-1000 ${
         isVisible ? "opacity-100" : "opacity-0"
       }`}
     >

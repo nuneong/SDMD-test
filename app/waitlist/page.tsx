@@ -32,6 +32,9 @@ const WaitlistPage = () => {
   const closeModal = () => {
     setStatus(FormStatus.IDLE);
     setAiResponse(null);
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem("restoreHomeScroll", "true");
+    }
     router.push("/");
   };
 
@@ -50,7 +53,7 @@ const WaitlistPage = () => {
 
       <main className="relative z-10 w-full max-w-lg md:max-w-2xl lg:w-[30%] lg:max-w-none">
         {/* Waitlist Form Section */}
-        <div className="bg-[#111111]/70 backdrop-blur-md rounded-2xl p-6 md:p-8 shadow-2xl shadow-purple-500/10 border border-purple-500/15 relative overflow-hidden">
+        <div className="bg-[#111111]/70 backdrop-blur-md rounded-lg p-6 md:p-8 shadow-2xl shadow-purple-500/10 border border-purple-500/15 relative overflow-hidden">
           {/* Decorative gradient glow behind form */}
           <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-purple-600/20 rounded-full blur-[80px] pointer-events-none"></div>
           <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 bg-purple-400/10 rounded-full blur-[80px] pointer-events-none"></div>
@@ -62,12 +65,27 @@ const WaitlistPage = () => {
             <WaitlistForm onSubmit={handleFormSubmit} status={status} />
           </div>
         </div>
+
+        {/* Back to Home - 팝업 박스 아래 중앙 */}
+        <div className="flex justify-center mt-6">
+          <button
+            onClick={() => {
+              if (typeof window !== "undefined") {
+                sessionStorage.setItem("restoreHomeScroll", "true");
+              }
+              router.push("/");
+            }}
+            className="text-purple-400 hover:text-purple-300 transition-colors text-sm"
+          >
+            ← Home
+          </button>
+        </div>
       </main>
 
       {/* Success Modal */}
       {status === FormStatus.SUCCESS && aiResponse && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in">
-          <div className="bg-[#111111]/95 backdrop-blur-md w-full max-w-md p-8 rounded-2xl border border-purple-500/50 shadow-[0_0_50px_rgba(139,92,246,0.3)] relative transform transition-all scale-100">
+          <div className="bg-[#111111]/95 backdrop-blur-md w-full max-w-md p-8 rounded-lg border border-purple-500/50 shadow-[0_0_50px_rgba(139,92,246,0.3)] relative transform transition-all scale-100">
             <button 
               onClick={closeModal}
               className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
@@ -89,7 +107,7 @@ const WaitlistPage = () => {
                 AI Message from MOLFUSE
               </p>
               
-              <div className="bg-[#0a0a0a]/50 p-6 rounded-xl border border-white/5 w-full">
+              <div className="bg-[#0a0a0a]/50 p-6 rounded-lg border border-white/5 w-full">
                 <p className="text-gray-200 leading-relaxed italic">
                   "{aiResponse}"
                 </p>
@@ -104,16 +122,6 @@ const WaitlistPage = () => {
           </div>
         </div>
       )}
-
-      {/* Back to Home */}
-      <div className="fixed bottom-6 left-6 z-50">
-        <button
-          onClick={() => router.push("/")}
-          className="text-purple-400 hover:text-purple-300 transition-colors text-sm"
-        >
-          ← Home
-        </button>
-      </div>
     </div>
   );
 };

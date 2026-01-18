@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { navigateToHome } from "@/utils/navigation";
 
 interface AppSidebarProps {
   isOpen: boolean;
@@ -112,7 +113,7 @@ const AppSidebar = ({
                   href="/"
                   onClick={(e) => {
                     e.preventDefault();
-                    router.push("/");
+                    navigateToHome(router);
                     onClose();
                   }}
                   className="block px-4 py-2 rounded-lg text-white transition-colors"
@@ -175,28 +176,6 @@ const AppSidebar = ({
               </li>
               <li>
                 <a
-                  href="/policy"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    router.push("/policy");
-                    onClose();
-                  }}
-                  className="block px-4 py-2 rounded-lg text-white transition-colors"
-                  style={{
-                    backgroundColor: 'transparent'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = 'rgba(30, 10, 70, 0.85)'; // 더 밝은 보라색 톤의 호버
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'transparent';
-                  }}
-                >
-                  Policy
-                </a>
-              </li>
-              <li>
-                <a
                   href="/company"
                   onClick={(e) => {
                     e.preventDefault();
@@ -215,6 +194,28 @@ const AppSidebar = ({
                   }}
                 >
                   Company
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/policy"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    router.push("/policy");
+                    onClose();
+                  }}
+                  className="block px-4 py-2 rounded-lg text-white transition-colors"
+                  style={{
+                    backgroundColor: 'transparent'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = 'rgba(30, 10, 70, 0.85)'; // 더 밝은 보라색 톤의 호버
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                  }}
+                >
+                  Policy
                 </a>
               </li>
               <li>

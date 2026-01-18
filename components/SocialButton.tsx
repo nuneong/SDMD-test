@@ -40,7 +40,7 @@ const SocialButton: React.FC<SocialButtonProps> = ({ platform, onClick }) => {
   return (
     <button
       onClick={onClick}
-      className={`${getStyles()} w-12 h-12 rounded-xl flex items-center justify-center shadow-md transition-transform hover:scale-105 active:scale-95`}
+      className={`${getStyles()} w-12 h-12 rounded-lg flex items-center justify-center shadow-md transition-transform hover:scale-105 active:scale-95`}
     >
       {getIcon()}
     </button>

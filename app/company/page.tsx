@@ -78,7 +78,12 @@ const CompanyPage = () => {
         <div className="text-center">
           <div className="text-white text-xl">company 페이지입니다</div>
           <button
-            onClick={() => router.push("/")}
+            onClick={() => {
+              if (typeof window !== "undefined") {
+                sessionStorage.setItem("restoreHomeScroll", "true");
+              }
+              router.push("/");
+            }}
             className="mt-4 text-purple-400 hover:text-purple-300 transition-colors duration-300"
           >
             ← Home

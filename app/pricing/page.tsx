@@ -6,6 +6,7 @@ import LoginButton from "@/components/GoogleLoginButton";
 import GetStartedButton from "@/components/GetStartedButton";
 import HamburgerButton from "@/components/HamburgerButton";
 import AppSidebar from "@/components/AppSidebar";
+import BusinessModelSection from "@/components/BusinessModelSection";
 
 const planDetails = {
   starter: {
@@ -77,6 +78,9 @@ const PricingPage = () => {
   const closePaymentModal = () => {
     setShowPaymentModal(false);
     setSelectedPlan(null);
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem("restoreHomeScroll", "true");
+    }
     router.push("/");
   };
 
@@ -125,12 +129,19 @@ const PricingPage = () => {
       />
 
       {/* Content */}
-      <div className="min-h-screen flex items-center justify-center pt-20">
-        <div className="text-center">
-          <div className="text-white text-xl">pricing 페이지입니다</div>
+      <div className="pt-20">
+        <BusinessModelSection />
+        
+        {/* Back to Home - 플랜 선택 박스 아래 중앙 */}
+        <div className="flex justify-center mt-8 pb-20">
           <button
-            onClick={() => router.push("/")}
-            className="mt-4 text-purple-400 hover:text-purple-300 transition-colors duration-300"
+            onClick={() => {
+              if (typeof window !== "undefined") {
+                sessionStorage.setItem("restoreHomeScroll", "true");
+              }
+              router.push("/");
+            }}
+            className="text-purple-400 hover:text-purple-300 transition-colors text-sm"
           >
             ← Home
           </button>
@@ -140,7 +151,7 @@ const PricingPage = () => {
       {/* Payment Modal */}
       {showPaymentModal && currentPlan && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-          <div className="bg-[#111111]/95 backdrop-blur-md w-full max-w-md p-8 rounded-2xl border border-purple-500/50 shadow-[0_0_50px_rgba(139,92,246,0.3)] relative">
+          <div className="bg-[#111111]/95 backdrop-blur-md w-full max-w-md p-8 rounded-lg border border-purple-500/50 shadow-[0_0_50px_rgba(139,92,246,0.3)] relative">
             {/* Close Button */}
             <button
               onClick={closePaymentModal}
@@ -221,7 +232,12 @@ const PricingPage = () => {
                   </p>
                 </div>
                 <button
-                  onClick={() => router.push("/")}
+                  onClick={() => {
+                    if (typeof window !== "undefined") {
+                      sessionStorage.setItem("restoreHomeScroll", "true");
+                    }
+                    router.push("/");
+                  }}
                   className="text-purple-400 hover:text-purple-300 transition-colors duration-300 text-sm"
                 >
                   ← Home

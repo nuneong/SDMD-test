@@ -28,9 +28,18 @@ const HamburgerButton = ({ onClick, onMouseEnter }: HamburgerButtonProps) => {
       className="flex flex-col gap-1.5 p-2 rounded-lg hover:bg-gray-100/10 transition-colors"
       aria-label="메뉴 열기"
     >
-        <span className="w-6 h-0.5 bg-white transition-all" />
-        <span className="w-6 h-0.5 bg-white transition-all" />
-        <span className="w-6 h-0.5 bg-white transition-all" />
+        <span 
+          className="w-6 bg-white transition-all" 
+          style={{ height: '2px', minHeight: '2px', maxHeight: '2px' }} 
+        />
+        <span 
+          className="w-6 bg-white transition-all" 
+          style={{ height: '2px', minHeight: '2px', maxHeight: '2px' }} 
+        />
+        <span 
+          className="w-6 bg-white transition-all" 
+          style={{ height: '2px', minHeight: '2px', maxHeight: '2px' }} 
+        />
     </button>
       {showTooltip && (
         <div className="absolute top-full left-0 mt-2 px-3 py-1.5 bg-gray-800 text-white text-xs rounded-lg whitespace-nowrap z-50">

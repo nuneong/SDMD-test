@@ -87,7 +87,12 @@ const ProductPage = () => {
         {/* Home Link */}
         <div className="text-center mt-8">
           <button
-            onClick={() => router.push("/")}
+            onClick={() => {
+              if (typeof window !== "undefined") {
+                sessionStorage.setItem("restoreHomeScroll", "true");
+              }
+              router.push("/");
+            }}
             className="text-purple-400 hover:text-purple-300 transition-colors duration-300"
           >
             ← Home

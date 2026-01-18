@@ -53,28 +53,35 @@ const HowItWorksSection = () => {
   return (
     <section
       ref={ref}
-      className={`min-h-screen flex items-center justify-center px-4 py-20 transition-opacity duration-1000 ${
+      className={`min-h-screen flex items-center justify-center px-4 pt-8 pb-20 transition-opacity duration-1000 ${
         isVisible ? "opacity-100" : "opacity-0"
       }`}
     >
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-16">
+        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-8">
           Molfuse는 이렇게 작동합니다
         </h2>
         
-        <div className="space-y-12">
+        {/* One-liner */}
+        <p className="text-xl md:text-2xl font-bold text-white text-center mb-12">
+          보여주는 도구가 아니라
+          <br />
+          <span className="text-purple-400">결정하고 실행하는 AI</span>
+        </p>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {steps.map((step, index) => (
             <div
               key={index}
-              className="p-8 rounded-lg backdrop-blur-md"
+              className="p-8 rounded-2xl backdrop-blur-md"
               style={{
                 backgroundColor: 'rgba(12, 0, 32, 0.65)',
                 border: '1px solid rgba(18, 0, 48, 0.6)'
               }}
             >
-              <div className="flex flex-col md:flex-row items-start gap-6">
-                <div className="flex-shrink-0">
-                  <div className="w-20 h-20 rounded-full flex items-center justify-center text-3xl font-bold text-purple-400 mb-4"
+              <div className="flex flex-col items-center text-center">
+                <div className="flex-shrink-0 mb-6">
+                  <div className="w-20 h-20 rounded-full flex items-center justify-center text-3xl font-bold text-purple-400 mb-4 mx-auto"
                     style={{
                       backgroundColor: 'rgba(147, 51, 234, 0.2)',
                       border: '2px solid rgba(147, 51, 234, 0.5)'
@@ -82,12 +89,12 @@ const HowItWorksSection = () => {
                   >
                     {step.number}
                   </div>
-                  <div className="text-purple-400">
+                  <div className="text-purple-400 flex justify-center">
                     {step.icon}
                   </div>
                 </div>
                 
-                <div className="flex-1">
+                <div className="flex-1 w-full">
                   <h3 className="text-2xl font-bold text-white mb-2">
                     {step.title}
                   </h3>
@@ -108,7 +115,7 @@ const HowItWorksSection = () => {
                   {step.items && (
                     <ul className="space-y-2">
                       {step.items.map((item, idx) => (
-                        <li key={idx} className="flex items-center text-gray-300">
+                        <li key={idx} className="flex items-center text-gray-300 justify-center md:justify-start">
                           <svg
                             className="w-5 h-5 text-purple-400 mr-2 flex-shrink-0"
                             fill="none"
@@ -131,21 +138,6 @@ const HowItWorksSection = () => {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* One-liner */}
-        <div
-          className="mt-12 p-8 rounded-lg backdrop-blur-md text-center"
-          style={{
-            backgroundColor: 'rgba(18, 0, 48, 0.75)',
-            border: '2px solid rgba(147, 51, 234, 0.5)'
-          }}
-        >
-          <p className="text-xl md:text-2xl font-bold text-white">
-            보여주는 도구가 아니라
-            <br />
-            <span className="text-purple-400">결정하고 실행하는 AI</span>
-          </p>
         </div>
       </div>
     </section>

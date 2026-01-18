@@ -40,7 +40,7 @@ const ValueProposition = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* AI 기반 콘텐츠 생성 */}
             <div
-              className="feature-box-animated rounded-lg p-6 backdrop-blur-md transition-transform duration-300 hover:scale-105"
+              className="feature-box-animated rounded-2xl p-6 backdrop-blur-md transition-transform duration-300 hover:scale-105"
               style={{
                 backgroundColor: "rgba(12, 0, 32, 0.65)",
                 border: "1px solid rgba(18, 0, 48, 0.6)",
@@ -57,7 +57,7 @@ const ValueProposition = () => {
 
             {/* RAG 기반 전문가 지식베이스 */}
             <div
-              className="feature-box-animated rounded-lg p-6 backdrop-blur-md transition-transform duration-300 hover:scale-105"
+              className="feature-box-animated rounded-2xl p-6 backdrop-blur-md transition-transform duration-300 hover:scale-105"
               style={{
                 backgroundColor: "rgba(12, 0, 32, 0.65)",
                 border: "1px solid rgba(18, 0, 48, 0.6)",
@@ -74,7 +74,7 @@ const ValueProposition = () => {
 
             {/* 실시간 ROI 모니터링 */}
             <div
-              className="feature-box-animated rounded-lg p-6 backdrop-blur-md transition-transform duration-300 hover:scale-105"
+              className="feature-box-animated rounded-2xl p-6 backdrop-blur-md transition-transform duration-300 hover:scale-105"
               style={{
                 backgroundColor: "rgba(12, 0, 32, 0.65)",
                 border: "1px solid rgba(18, 0, 48, 0.6)",
@@ -91,7 +91,7 @@ const ValueProposition = () => {
 
             {/* 자동화 마케팅 워크플로우 */}
             <div
-              className="feature-box-animated rounded-lg p-6 backdrop-blur-md transition-transform duration-300 hover:scale-105"
+              className="feature-box-animated rounded-2xl p-6 backdrop-blur-md transition-transform duration-300 hover:scale-105"
               style={{
                 backgroundColor: "rgba(12, 0, 32, 0.65)",
                 border: "1px solid rgba(18, 0, 48, 0.6)",
@@ -113,8 +113,11 @@ const ValueProposition = () => {
           <div className="flex flex-col md:flex-row gap-6 items-center md:items-end">
             {/* 제품 시연 이미지/영상 박스 */}
             <div className="flex-1 w-full md:w-auto">
-              <div className="border-2 border-gray-700 rounded-lg p-4 md:p-6 bg-[#111111]/50 mt-[80px] overflow-hidden">
+              <div className="border-2 border-gray-700 rounded-lg p-4 md:p-6 bg-[#111111]/50 mt-[80px] overflow-hidden relative">
                 <FeatureSlider />
+                <p className="absolute bottom-2 right-4 text-purple-400 text-sm">
+                  *여기에 실제 MOLFUSE의 시연 내용이 애니메이팅됩니다.
+                </p>
               </div>
             </div>
 

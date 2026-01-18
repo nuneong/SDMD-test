@@ -15,7 +15,7 @@ import {
 
 // --- 1. Upload View (NotebookLM Source Style) ---
 export const MockUpload = () => (
-  <div className="flex h-full w-full bg-[#1e1e1e] rounded-xl overflow-hidden border border-gray-800">
+  <div className="flex h-full w-full bg-[#1e1e1e] rounded-lg overflow-hidden border border-gray-800">
     {/* Left Sidebar: Source List */}
     <div className="w-[35%] bg-[#171717] border-r border-gray-800 flex flex-col">
       <div className="p-4 border-b border-gray-800 bg-[#171717]">
@@ -76,7 +76,7 @@ export const MockUpload = () => (
     </div>
     {/* Right Main: Drop Zone */}
     <div className="flex-1 flex flex-col items-center justify-center bg-[#1e1e1e] p-6 relative">
-      <div className="w-full h-full border-2 border-dashed border-gray-700 rounded-xl flex flex-col items-center justify-center hover:border-purple-500/40 hover:bg-gray-800/30 transition-all cursor-pointer group relative overflow-hidden">
+      <div className="w-full h-full border-2 border-dashed border-gray-700 rounded-lg flex flex-col items-center justify-center hover:border-purple-500/40 hover:bg-gray-800/30 transition-all cursor-pointer group relative overflow-hidden">
          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
          <div className="w-16 h-16 bg-purple-500/10 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(139,92,246,0.1)]">
             <UploadCloud size={32} className="text-purple-400" />
@@ -152,7 +152,7 @@ const MoleculeIcon = () => (
 // --- 2. Node View (NotebookLM Style) ---
 export const MockNode = () => {
   return (
-    <div className="relative h-full w-full bg-[#0F0F0F] rounded-xl overflow-hidden p-4">
+    <div className="relative h-full w-full bg-[#0F0F0F] rounded-lg overflow-hidden p-4">
       <div className="absolute inset-0 opacity-20" 
            style={{ backgroundImage: 'radial-gradient(#333 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
       
@@ -202,7 +202,7 @@ export const MockStatus = () => {
   ];
 
   return (
-    <div className="h-full w-full bg-[#0F0F0F] rounded-xl p-6 flex flex-col">
+    <div className="h-full w-full bg-[#0F0F0F] rounded-lg p-6 flex flex-col">
       <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-6">Live Automation Agent</h3>
       <div className="space-y-6 relative">
         {/* Vertical Line */}
@@ -262,7 +262,7 @@ export const MockResult = () => {
   const currentContent = contentMap[activeTab as keyof typeof contentMap];
 
   return (
-    <div className="h-full w-full bg-[#1e1e1e] rounded-xl overflow-hidden border border-gray-800 flex">
+    <div className="h-full w-full bg-[#1e1e1e] rounded-lg overflow-hidden border border-gray-800 flex">
       {/* Left Sidebar Tabs */}
       <div className="w-[30%] bg-[#171717] border-r border-gray-800 flex flex-col pt-4">
         <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider px-4 mb-3">Media Channels</h3>
@@ -332,15 +332,15 @@ const channelData = [
 ];
 
 export const MockReport = () => (
-  <div className="h-full w-full bg-[#0F0F0F] rounded-xl p-4 flex flex-col gap-4 overflow-y-auto">
+  <div className="h-full w-full bg-[#0F0F0F] rounded-2xl p-4 flex flex-col gap-4 overflow-y-auto">
     <div className="flex justify-between items-center mb-0">
       <h3 className="text-gray-200 font-medium text-sm">Campaign Performance</h3>
-      <select className="bg-gray-900 border border-gray-700 text-[10px] text-gray-400 rounded px-2 py-1 outline-none">
+      <select className="bg-gray-900 border border-gray-700 text-[10px] text-gray-400 rounded-2xl px-2 py-1 outline-none">
         <option>Last 7 Days</option>
       </select>
     </div>
     {/* Area Chart: Trends */}
-    <div className="flex-1 min-h-[160px] bg-[#171717] rounded-lg p-2 border border-gray-800 flex flex-col">
+    <div className="flex-1 min-h-[160px] bg-[#171717] rounded-2xl p-2 border border-gray-800 flex flex-col">
        <div className="flex-1 w-full min-h-0">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={dataReport}>
@@ -368,7 +368,7 @@ export const MockReport = () => (
        </div>
     </div>
     {/* Bar Chart: Channel Breakdown */}
-    <div className="h-[140px] bg-[#171717] rounded-lg p-3 border border-gray-800 flex flex-col">
+    <div className="h-[140px] bg-[#171717] rounded-2xl p-3 border border-gray-800 flex flex-col">
        <h3 className="text-xs font-semibold text-gray-400 mb-2">Channel Attribution</h3>
        <div className="flex-1 w-full min-h-0">
          <ResponsiveContainer width="100%" height="100%">
@@ -397,7 +397,7 @@ const workflows = [
 ];
 
 export const MockDashboard = () => (
-  <div className="h-full w-full bg-[#0F0F0F] rounded-xl p-6 flex flex-col gap-6">
+  <div className="h-full w-full bg-[#0F0F0F] rounded-lg p-6 flex flex-col gap-6">
     <div className="flex items-center justify-between">
        <h3 className="text-lg font-semibold text-white">Overview</h3>
        <div className="flex items-center gap-2">

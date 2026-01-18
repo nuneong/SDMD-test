@@ -39,7 +39,7 @@ const TechnologySection = () => {
   return (
     <section
       ref={ref}
-      className={`min-h-screen flex items-center justify-center px-4 py-14 transition-opacity duration-1000 ${
+      className={`min-h-screen flex items-center justify-center px-4 pt-7 pb-7 transition-opacity duration-1000 ${
         isVisible ? "opacity-100" : "opacity-0"
       }`}
     >

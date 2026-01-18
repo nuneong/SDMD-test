@@ -28,7 +28,7 @@ const FeatureSlider = () => {
   return (
     <div className="w-full mx-auto">
       {/* Container Box */}
-      <div className="bg-transparent border-0 rounded-3xl overflow-hidden shadow-2xl flex flex-col lg:flex-row h-[750px] lg:h-[600px]">
+      <div className="bg-transparent border-0 rounded-2xl overflow-hidden shadow-2xl flex flex-col lg:flex-row h-[750px] lg:h-[600px]">
         
         {/* Left Side: Navigation / Steps */}
         <div className="w-full lg:w-1/3 bg-[#050505] border-b lg:border-b-0 lg:border-r border-gray-800 p-6 flex flex-col justify-center">
@@ -45,7 +45,7 @@ const FeatureSlider = () => {
                 <button
                   key={step.id}
                   onClick={() => handleManualSelect(index)}
-                  className={`w-full text-left px-4 py-4 rounded-xl transition-all duration-300 group relative overflow-hidden ${
+                  className={`w-full text-left px-4 py-4 rounded-2xl transition-all duration-300 group relative overflow-hidden ${
                     isActive 
                       ? 'bg-gray-900/80 border border-purple-500/30 shadow-[0_0_15px_rgba(139,92,246,0.15)]' 
                       : 'hover:bg-gray-900/50 border border-transparent'
@@ -72,7 +72,7 @@ const FeatureSlider = () => {
                       )}
                     </div>
                     {isActive && (
-                      <ChevronRight className="ml-auto text-purple-400 w-4 h-4" />
+                      <ChevronRight className="ml-auto text-purple-400 w-6 h-6" />
                     )}
                   </div>
                 </button>

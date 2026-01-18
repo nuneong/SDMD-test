@@ -31,6 +31,7 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ onSubmit, status }) => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [hasSubmitted, setHasSubmitted] = useState(false);
   
   const [formData, setFormData] = useState<WaitlistFormData>({
     name: '',
@@ -154,13 +155,35 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ onSubmit, status }) => {
     const { name } = e.target;
     setTouched(prev => ({ ...prev, [name]: true }));
     
-    // 이메일과 연락처는 blur 시에도 형식 검증 (빈 값이 아닐 때만)
-    if (name === 'email' && formData.email.trim()) {
-      const error = validateField(name, formData.email);
-      setErrors(prev => ({ ...prev, [name]: error }));
-    } else if (name === 'phoneNumber' && phoneNumber.trim()) {
-      const error = validateField(name, phoneNumber);
-      setErrors(prev => ({ ...prev, [name]: error }));
+    // 버튼을 누른 후에만 빈 값 에러 표시, 그 전에는 형식 에러만 표시
+    if (hasSubmitted) {
+      // 제출 후에는 모든 검증 수행
+      if (name === 'email' && formData.email.trim()) {
+        const error = validateField(name, formData.email);
+        setErrors(prev => ({ ...prev, [name]: error }));
+      } else if (name === 'phoneNumber' && phoneNumber.trim()) {
+        const error = validateField(name, phoneNumber);
+        setErrors(prev => ({ ...prev, [name]: error }));
+      } else if (name === 'name' || name === 'companyName') {
+        const value = formData[name as keyof WaitlistFormData] as string;
+        const error = validateField(name, value);
+        setErrors(prev => ({ ...prev, [name]: error }));
+      }
+    } else {
+      // 제출 전에는 형식 에러만 표시 (빈 값 에러는 표시하지 않음)
+      if (name === 'email' && formData.email.trim()) {
+        const error = validateField(name, formData.email);
+        // 빈 값 에러가 아닌 경우에만 표시
+        if (error && error !== '이 입력란을 작성하세요.') {
+          setErrors(prev => ({ ...prev, [name]: error }));
+        }
+      } else if (name === 'phoneNumber' && phoneNumber.trim()) {
+        const error = validateField(name, phoneNumber);
+        // 빈 값 에러가 아닌 경우에만 표시
+        if (error && error !== '이 입력란을 작성하세요.') {
+          setErrors(prev => ({ ...prev, [name]: error }));
+        }
+      }
     }
   };
 
@@ -188,16 +211,34 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ onSubmit, status }) => {
     setPhoneNumber(formatted);
     setFormData(prev => ({ ...prev, phoneNumber: formatted }));
     
-    // 연락처는 입력 중에도 실시간 형식 검증
+    // 연락처는 입력 중에도 실시간 형식 검증 (버튼을 누른 후에만 빈 값 에러 표시)
     if (touched.phoneNumber) {
       const error = validateField('phoneNumber', formatted);
-      setErrors(prev => ({ ...prev, phoneNumber: error }));
+      if (hasSubmitted) {
+        // 제출 후에는 모든 에러 표시
+        setErrors(prev => ({ ...prev, phoneNumber: error }));
+      } else {
+        // 제출 전에는 형식 에러만 표시 (빈 값 에러는 표시하지 않음)
+        if (error && error !== '이 입력란을 작성하세요.') {
+          setErrors(prev => ({ ...prev, phoneNumber: error }));
+        } else if (error === '이 입력란을 작성하세요.') {
+          // 빈 값 에러는 제거
+          setErrors(prev => {
+            const newErrors = { ...prev };
+            delete newErrors.phoneNumber;
+            return newErrors;
+          });
+        }
+      }
     }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (status === FormStatus.SUBMITTING) return;
+    
+    // 제출 시도 표시
+    setHasSubmitted(true);
     
     // 모든 필드 터치 처리 및 검증
     const newTouched: Record<string, boolean> = {};

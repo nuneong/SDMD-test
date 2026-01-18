@@ -177,7 +177,7 @@ const LoginPage = () => {
         <div className="flex gap-3">
           <button
             onClick={() => handleSetView("find-id")}
-            className={`flex-1 py-3.5 rounded-2xl text-sm font-bold transition-all ${
+            className={`flex-1 py-3.5 rounded-lg text-sm font-bold transition-all ${
               isIdTab
                 ? "bg-[#8b5cf6] text-white shadow-[0_0_15px_rgba(139,92,246,0.4)]"
                 : "bg-[#18181a] text-gray-500 border border-transparent hover:bg-[#222] hover:text-gray-400"
@@ -187,7 +187,7 @@ const LoginPage = () => {
           </button>
           <button
             onClick={() => handleSetView("find-password")}
-            className={`flex-1 py-3.5 rounded-2xl text-sm font-bold transition-all ${
+            className={`flex-1 py-3.5 rounded-lg text-sm font-bold transition-all ${
               !isIdTab
                 ? "bg-[#8b5cf6] text-white shadow-[0_0_15px_rgba(139,92,246,0.4)]"
                 : "bg-[#18181a] text-gray-500 border border-transparent hover:bg-[#222] hover:text-gray-400"
@@ -198,7 +198,7 @@ const LoginPage = () => {
         </div>
 
         {/* 메인 폼 카드 */}
-        <div className="bg-[#111111] border border-gray-800/50 rounded-[30px] p-6 pt-10 pb-8 shadow-[0_0_20px_rgba(147,51,234,0.05)] relative overflow-hidden min-h-[400px]">
+        <div className="bg-[#111111] border border-gray-800/50 rounded-lg p-6 pt-10 pb-8 shadow-[0_0_20px_rgba(147,51,234,0.05)] relative overflow-hidden min-h-[400px]">
           {/* 배경 효과 */}
           <div className="absolute -top-10 -left-10 w-32 h-32 bg-purple-600/10 rounded-full blur-2xl pointer-events-none"></div>
           <div className="relative z-10 flex flex-col gap-8">
@@ -222,7 +222,7 @@ const LoginPage = () => {
                       value={findName}
                       onChange={(e) => setFindName(e.target.value)}
                       placeholder="성함을 입력해 주세요"
-                      className="w-full bg-[#1e1e1e] text-gray-200 placeholder-gray-600 rounded-xl px-4 py-4 border border-transparent focus:border-purple-500/50 focus:bg-[#252525] focus:outline-none focus:ring-1 focus:ring-purple-500/50 transition-all text-sm font-medium"
+                      className="w-full bg-[#1e1e1e] text-gray-200 placeholder-gray-600 rounded-lg px-4 py-4 border border-transparent focus:border-purple-500/50 focus:bg-[#252525] focus:outline-none focus:ring-1 focus:ring-purple-500/50 transition-all text-sm font-medium"
                     />
                   </div>
                   <div className="space-y-2">
@@ -234,7 +234,7 @@ const LoginPage = () => {
                         <select
                           value={countryCode}
                           onChange={handleCountryChange}
-                          className="w-[120px] h-full bg-[#1e1e1e] text-gray-200 rounded-xl pl-3 pr-8 border border-transparent focus:border-purple-500/50 focus:bg-[#252525] focus:outline-none focus:ring-1 focus:ring-purple-500/50 transition-all text-sm font-medium appearance-none cursor-pointer"
+                          className="w-[120px] h-full bg-[#1e1e1e] text-gray-200 rounded-lg pl-3 pr-8 border border-transparent focus:border-purple-500/50 focus:bg-[#252525] focus:outline-none focus:ring-1 focus:ring-purple-500/50 transition-all text-sm font-medium appearance-none cursor-pointer"
                         >
                           {COUNTRY_CODES.map((c) => (
                             <option key={c.code} value={c.code}>
@@ -266,7 +266,7 @@ const LoginPage = () => {
                         value={findPhone}
                         onChange={handlePhoneChange}
                         placeholder={currentCountry.placeholder}
-                        className="w-full bg-[#1e1e1e] text-gray-200 placeholder-gray-600 rounded-xl px-4 py-4 border border-transparent focus:border-purple-500/50 focus:bg-[#252525] focus:outline-none focus:ring-1 focus:ring-purple-500/50 transition-all text-sm font-medium"
+                        className="w-full bg-[#1e1e1e] text-gray-200 placeholder-gray-600 rounded-lg px-4 py-4 border border-transparent focus:border-purple-500/50 focus:bg-[#252525] focus:outline-none focus:ring-1 focus:ring-purple-500/50 transition-all text-sm font-medium"
                       />
                     </div>
                   </div>
@@ -281,7 +281,7 @@ const LoginPage = () => {
                       value={findName}
                       onChange={(e) => setFindName(e.target.value)}
                       placeholder="성함을 입력해 주세요"
-                      className="w-full bg-[#1e1e1e] text-gray-200 placeholder-gray-600 rounded-xl px-4 py-4 border border-transparent focus:border-purple-500/50 focus:bg-[#252525] focus:outline-none focus:ring-1 focus:ring-purple-500/50 transition-all text-sm font-medium"
+                      className="w-full bg-[#1e1e1e] text-gray-200 placeholder-gray-600 rounded-lg px-4 py-4 border border-transparent focus:border-purple-500/50 focus:bg-[#252525] focus:outline-none focus:ring-1 focus:ring-purple-500/50 transition-all text-sm font-medium"
                     />
                   </div>
                   <div className="space-y-2">
@@ -293,7 +293,7 @@ const LoginPage = () => {
                       value={findEmail}
                       onChange={(e) => setFindEmail(e.target.value)}
                       placeholder="example@sumdemand.com"
-                      className="w-full bg-[#1e1e1e] text-gray-200 placeholder-gray-600 rounded-xl px-4 py-4 border border-transparent focus:border-purple-500/50 focus:bg-[#252525] focus:outline-none focus:ring-1 focus:ring-purple-500/50 transition-all text-sm font-medium"
+                      className="w-full bg-[#1e1e1e] text-gray-200 placeholder-gray-600 rounded-lg px-4 py-4 border border-transparent focus:border-purple-500/50 focus:bg-[#252525] focus:outline-none focus:ring-1 focus:ring-purple-500/50 transition-all text-sm font-medium"
                     />
                   </div>
                   <div className="space-y-2">
@@ -305,7 +305,7 @@ const LoginPage = () => {
                         <select
                           value={countryCode}
                           onChange={handleCountryChange}
-                          className="w-[120px] h-full bg-[#1e1e1e] text-gray-200 rounded-xl pl-3 pr-8 border border-transparent focus:border-purple-500/50 focus:bg-[#252525] focus:outline-none focus:ring-1 focus:ring-purple-500/50 transition-all text-sm font-medium appearance-none cursor-pointer"
+                          className="w-[120px] h-full bg-[#1e1e1e] text-gray-200 rounded-lg pl-3 pr-8 border border-transparent focus:border-purple-500/50 focus:bg-[#252525] focus:outline-none focus:ring-1 focus:ring-purple-500/50 transition-all text-sm font-medium appearance-none cursor-pointer"
                         >
                           {COUNTRY_CODES.map((c) => (
                             <option key={c.code} value={c.code}>
@@ -336,12 +336,12 @@ const LoginPage = () => {
                         value={findPhone}
                         onChange={handlePhoneChange}
                         placeholder={currentCountry.placeholder}
-                        className="flex-1 bg-[#1e1e1e] text-gray-200 placeholder-gray-600 rounded-xl px-4 py-4 border border-transparent focus:border-purple-500/50 focus:bg-[#252525] focus:outline-none focus:ring-1 focus:ring-purple-500/50 transition-all text-sm font-medium min-w-0"
+                        className="flex-1 bg-[#1e1e1e] text-gray-200 placeholder-gray-600 rounded-lg px-4 py-4 border border-transparent focus:border-purple-500/50 focus:bg-[#252525] focus:outline-none focus:ring-1 focus:ring-purple-500/50 transition-all text-sm font-medium min-w-0"
                       />
                       <button
                         type="button"
                         onClick={handleSendVerification}
-                        className="shrink-0 bg-[#1e1e1e] hover:bg-[#252525] text-[#a78bfa] border border-[#a78bfa]/30 hover:border-[#a78bfa] font-bold text-xs px-4 rounded-xl transition-all"
+                        className="shrink-0 bg-[#1e1e1e] hover:bg-[#252525] text-[#a78bfa] border border-[#a78bfa]/30 hover:border-[#a78bfa] font-bold text-xs px-4 rounded-lg transition-all"
                       >
                         {isVerificationSent ? "재발송" : "인증번호 발송"}
                       </button>
@@ -358,14 +358,14 @@ const LoginPage = () => {
                           value={verificationCode}
                           onChange={(e) => setVerificationCode(e.target.value)}
                           placeholder="인증번호 6자리 입력"
-                          className="flex-1 bg-[#1e1e1e] text-gray-200 placeholder-gray-600 rounded-xl px-4 py-4 border border-transparent focus:border-purple-500/50 focus:bg-[#252525] focus:outline-none focus:ring-1 focus:ring-purple-500/50 transition-all text-sm font-medium min-w-0"
+                          className="flex-1 bg-[#1e1e1e] text-gray-200 placeholder-gray-600 rounded-lg px-4 py-4 border border-transparent focus:border-purple-500/50 focus:bg-[#252525] focus:outline-none focus:ring-1 focus:ring-purple-500/50 transition-all text-sm font-medium min-w-0"
                           disabled={isVerified}
                         />
                         <button
                           type="button"
                           onClick={handleConfirmVerification}
                           disabled={isVerified}
-                          className={`shrink-0 font-bold text-xs px-6 rounded-xl transition-all border ${
+                          className={`shrink-0 font-bold text-xs px-6 rounded-lg transition-all border ${
                             isVerified
                               ? "bg-green-500/10 text-green-500 border-green-500/30 cursor-default"
                               : "bg-[#1e1e1e] hover:bg-[#252525] text-[#a78bfa] border-[#a78bfa]/30 hover:border-[#a78bfa]"
@@ -391,7 +391,7 @@ const LoginPage = () => {
 
             {/* 액션 버튼 */}
             <div className="mt-4">
-              <button className="w-full bg-[#8b5cf6] hover:bg-[#7c3aed] text-white font-bold text-base py-4 rounded-xl shadow-[0_4px_14px_rgba(139,92,246,0.3)] hover:shadow-[0_6px_20px_rgba(139,92,246,0.4)] transition-all active:scale-[0.98]">
+              <button className="w-full bg-[#8b5cf6] hover:bg-[#7c3aed] text-white font-bold text-base py-4 rounded-lg shadow-[0_4px_14px_rgba(139,92,246,0.3)] hover:shadow-[0_6px_20px_rgba(139,92,246,0.4)] transition-all active:scale-[0.98]">
                 {isIdTab ? "아이디 찾기" : "비밀번호 재설정"}
               </button>
             </div>
@@ -420,7 +420,7 @@ const LoginPage = () => {
         </div>
 
         {/* Top Section: Easy Login */}
-        <div className="bg-[#111111] border border-gray-800/50 rounded-[30px] p-5 pt-5 pb-5 shadow-[0_0_20px_rgba(147,51,234,0.05)] relative overflow-hidden">
+        <div className="bg-[#111111] border border-gray-800/50 rounded-lg p-5 pt-5 pb-5 shadow-[0_0_20px_rgba(147,51,234,0.05)] relative overflow-hidden">
           {/* Subtle purple glow top left */}
           <div className="absolute -top-10 -left-10 w-32 h-32 bg-purple-600/10 rounded-full blur-2xl pointer-events-none"></div>
           <div className="relative z-10">
@@ -447,7 +447,7 @@ const LoginPage = () => {
         </div>
 
         {/* Bottom Section: Email Login */}
-        <div className="bg-[#111111] border border-gray-800/50 rounded-[30px] p-6 pt-6 pb-6 shadow-[0_0_20px_rgba(147,51,234,0.05)] relative overflow-hidden">
+        <div className="bg-[#111111] border border-gray-800/50 rounded-lg p-6 pt-6 pb-6 shadow-[0_0_20px_rgba(147,51,234,0.05)] relative overflow-hidden">
           {/* Subtle purple glow */}
           <div className="absolute -top-10 -left-10 w-32 h-32 bg-purple-600/10 rounded-full blur-2xl pointer-events-none"></div>
           <div className="relative z-10 flex flex-col gap-4">
@@ -465,7 +465,7 @@ const LoginPage = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="example@sumdemand.com"
-                className="w-full bg-[#1e1e1e] text-gray-200 placeholder-gray-600 rounded-xl px-4 py-3 border border-transparent focus:border-purple-500/50 focus:bg-[#252525] focus:outline-none focus:ring-1 focus:ring-purple-500/50 transition-all text-sm font-medium"
+                className="w-full bg-[#1e1e1e] text-gray-200 placeholder-gray-600 rounded-lg px-4 py-3 border border-transparent focus:border-purple-500/50 focus:bg-[#252525] focus:outline-none focus:ring-1 focus:ring-purple-500/50 transition-all text-sm font-medium"
               />
             </div>
 
@@ -477,7 +477,7 @@ const LoginPage = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="비밀번호를 입력해 주세요"
-                className="w-full bg-[#1e1e1e] text-gray-200 placeholder-gray-600 rounded-xl px-4 py-3 border border-transparent focus:border-purple-500/50 focus:bg-[#252525] focus:outline-none focus:ring-1 focus:ring-purple-500/50 transition-all text-sm font-medium"
+                className="w-full bg-[#1e1e1e] text-gray-200 placeholder-gray-600 rounded-lg px-4 py-3 border border-transparent focus:border-purple-500/50 focus:bg-[#252525] focus:outline-none focus:ring-1 focus:ring-purple-500/50 transition-all text-sm font-medium"
               />
             </div>
 
@@ -517,7 +517,7 @@ const LoginPage = () => {
             <button
               type="submit"
               onClick={handleLogin}
-              className="w-full bg-[#8b5cf6] hover:bg-[#7c3aed] text-white font-bold text-base py-3 rounded-xl shadow-[0_4px_14px_rgba(139,92,246,0.3)] hover:shadow-[0_6px_20px_rgba(139,92,246,0.4)] transition-all active:scale-[0.98] mt-1"
+              className="w-full bg-[#8b5cf6] hover:bg-[#7c3aed] text-white font-bold text-base py-3 rounded-lg shadow-[0_4px_14px_rgba(139,92,246,0.3)] hover:shadow-[0_6px_20px_rgba(139,92,246,0.4)] transition-all active:scale-[0.98] mt-1"
             >
               로그인
             </button>
