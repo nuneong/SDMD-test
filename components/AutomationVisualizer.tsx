@@ -126,7 +126,7 @@ const AutomationVisualizer: React.FC = () => {
             // 1. Check if 'processing' items have arrived at destination
             if (p.status === 'processing' && p.processStartTime) {
                 if (now - p.processStartTime >= movementDuration) {
-                    return { ...p, status: 'completed', completedTime: now };
+                    return { ...p, status: 'completed' as const, completedTime: now };
                 }
             }
             return p;
@@ -145,11 +145,11 @@ const AutomationVisualizer: React.FC = () => {
         if (pendingIdx !== -1) {
              const shouldStart = isAutomated || Math.random() > 0.8;
              if (shouldStart && next[pendingIdx].status === 'pending') {
-                 next[pendingIdx] = { 
-                   ...next[pendingIdx], 
-                   status: 'processing', 
-                   processStartTime: now 
-                 };
+                 next = next.map((p, idx) => 
+                   idx === pendingIdx 
+                     ? { ...p, status: 'processing' as const, processStartTime: now }
+                     : p
+                 );
              }
         }
         return next;
