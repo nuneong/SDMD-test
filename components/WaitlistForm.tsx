@@ -174,13 +174,13 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ onSubmit, status }) => {
       if (name === 'email' && formData.email.trim()) {
         const error = validateField(name, formData.email);
         // 빈 값 에러가 아닌 경우에만 표시
-        if (error && error !== '이 입력란을 작성하세요.') {
+        if (error && (error as string) !== '이 입력란을 작성하세요.') {
           setErrors(prev => ({ ...prev, [name]: error }));
         }
       } else if (name === 'phoneNumber' && phoneNumber.trim()) {
         const error = validateField(name, phoneNumber);
         // 빈 값 에러가 아닌 경우에만 표시
-        if (error && error !== '이 입력란을 작성하세요.') {
+        if (error && (error as string) !== '이 입력란을 작성하세요.') {
           setErrors(prev => ({ ...prev, [name]: error }));
         }
       }
@@ -219,9 +219,9 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ onSubmit, status }) => {
         setErrors(prev => ({ ...prev, phoneNumber: error }));
       } else {
         // 제출 전에는 형식 에러만 표시 (빈 값 에러는 표시하지 않음)
-        if (error && error !== '이 입력란을 작성하세요.') {
+        if (error && (error as string) !== '이 입력란을 작성하세요.') {
           setErrors(prev => ({ ...prev, phoneNumber: error }));
-        } else if (error === '이 입력란을 작성하세요.') {
+        } else if ((error as string) === '이 입력란을 작성하세요.') {
           // 빈 값 에러는 제거
           setErrors(prev => {
             const newErrors = { ...prev };
@@ -260,11 +260,11 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ onSubmit, status }) => {
       const error = validateField(field, value);
       
       // 빈 값 에러만 표시 (형식 에러는 제외)
-      if (error === '이 입력란을 작성하세요.') {
+      if ((error as string) === '이 입력란을 작성하세요.') {
         newErrors[field] = error;
         // 첫 번째 빈 필드만 표시하고 중단
         break;
-      } else if (error && error !== '이 입력란을 작성하세요.') {
+      } else if (error && (error as string) !== '이 입력란을 작성하세요.') {
         // 형식 에러는 계속 검증 (이메일, 연락처 형식)
         newErrors[field] = error;
       }
@@ -316,7 +316,7 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ onSubmit, status }) => {
       <div className="relative">
         <label htmlFor="email" className={labelClasses}>
           이메일 <span className="text-purple-400">*</span>
-          {touched.email && errors.email && errors.email !== '이 입력란을 작성하세요.' && (
+          {touched.email && errors.email && (errors.email as string) !== '이 입력란을 작성하세요.' && (
             <span className="text-purple-400 text-xs font-normal ml-2">
               {errors.email}
             </span>
@@ -334,7 +334,7 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ onSubmit, status }) => {
           placeholder="example@company.com"
           className={`${inputClasses} ${touched.email && errors.email ? 'border-purple-500/50' : ''}`}
         />
-        {firstErrorField === 'email' && errors.email && errors.email === '이 입력란을 작성하세요.' && (
+        {firstErrorField === 'email' && errors.email && (errors.email as string) === '이 입력란을 작성하세요.' && (
           <div className="custom-validation-message">
             <span>{errors.email}</span>
           </div>
@@ -385,7 +385,7 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ onSubmit, status }) => {
       <div className="relative">
         <label htmlFor="phoneNumber" className={labelClasses}>
           연락처 <span className="text-purple-400">*</span>
-          {touched.phoneNumber && errors.phoneNumber && errors.phoneNumber !== '이 입력란을 작성하세요.' && (
+          {touched.phoneNumber && errors.phoneNumber && (errors.phoneNumber as string) !== '이 입력란을 작성하세요.' && (
             <span className="text-purple-400 text-xs font-normal ml-2">
               {errors.phoneNumber}
             </span>
@@ -437,7 +437,7 @@ const WaitlistForm: React.FC<WaitlistFormProps> = ({ onSubmit, status }) => {
               className={`${inputClasses} ${touched.phoneNumber && errors.phoneNumber ? 'border-purple-500/50' : ''}`}
             />
           </div>
-          {firstErrorField === 'phoneNumber' && errors.phoneNumber && errors.phoneNumber === '이 입력란을 작성하세요.' && (
+          {firstErrorField === 'phoneNumber' && errors.phoneNumber && (errors.phoneNumber as string) === '이 입력란을 작성하세요.' && (
             <div className="custom-validation-message">
               <span>{errors.phoneNumber}</span>
             </div>
