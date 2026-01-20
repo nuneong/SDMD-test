@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import LoginButton from "@/components/GoogleLoginButton";
 import GetStartedButton from "@/components/GetStartedButton";
@@ -32,7 +32,7 @@ const planDetails = {
   },
 };
 
-const PricingPage = () => {
+const PricingContent = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -264,6 +264,18 @@ const PricingPage = () => {
         </div>
       )}
     </div>
+  );
+};
+
+const PricingPage = () => {
+  return (
+    <Suspense fallback={
+      <div className="relative bg-[#0a0a0a] min-h-screen flex items-center justify-center">
+        <div className="text-white">로딩 중...</div>
+      </div>
+    }>
+      <PricingContent />
+    </Suspense>
   );
 };
 
