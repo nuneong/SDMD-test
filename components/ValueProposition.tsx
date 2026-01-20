@@ -16,7 +16,7 @@ const ValueProposition = () => {
       }`}
     >
       <div className="max-w-6xl mx-auto text-center space-y-12">
-        <h2 className="text-3xl md:text-4xl font-light text-white mb-[60px] max-w-4xl mx-auto leading-relaxed">
+        <h2 className="text-2xl md:text-3xl font-light text-white mb-[60px] max-w-4xl mx-auto leading-relaxed">
           자료만 업로드하면
           <br />
           <br />
@@ -46,6 +46,21 @@ const ValueProposition = () => {
                 border: "1px solid rgba(18, 0, 48, 0.6)",
               }}
             >
+              <div className="mb-4 flex justify-center">
+                <svg
+                  className="w-10 h-10 text-purple-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"
+                  />
+                </svg>
+              </div>
               <h3 className="text-lg font-semibold text-purple-400 mb-3">
                 AI 기반 콘텐츠 생성
               </h3>
@@ -63,12 +78,29 @@ const ValueProposition = () => {
                 border: "1px solid rgba(18, 0, 48, 0.6)",
               }}
             >
+              <div className="mb-4 flex justify-center">
+                <svg
+                  className="w-10 h-10 text-purple-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
+                  />
+                </svg>
+              </div>
               <h3 className="text-lg font-semibold text-purple-400 mb-3">
                 RAG 기반 전문가 지식베이스
               </h3>
               <p className="text-gray-300 leading-relaxed text-sm">
                 지속적으로 업데이트되는 전문가의 지식과 경험을 실시간으로
-                활용하여 최적화된 마케팅 전략을 자동으로 수립하고 실행합니다.
+                활용하여
+                <br />
+                최적화된 마케팅 전략을 자동으로 수립하고 실행합니다.
               </p>
             </div>
 
@@ -80,6 +112,21 @@ const ValueProposition = () => {
                 border: "1px solid rgba(18, 0, 48, 0.6)",
               }}
             >
+              <div className="mb-4 flex justify-center">
+                <svg
+                  className="w-10 h-10 text-purple-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"
+                  />
+                </svg>
+              </div>
               <h3 className="text-lg font-semibold text-purple-400 mb-3">
                 실시간 ROI 모니터링
               </h3>
@@ -97,12 +144,28 @@ const ValueProposition = () => {
                 border: "1px solid rgba(18, 0, 48, 0.6)",
               }}
             >
+              <div className="mb-4 flex justify-center">
+                <svg
+                  className="w-10 h-10 text-purple-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299m-7.5-12.99l-.75-1.3m5.063 16.658l-.26-1.477m-2.605-14.772l-.26-1.477"
+                  />
+                </svg>
+              </div>
               <h3 className="text-lg font-semibold text-purple-400 mb-3">
                 자동화 마케팅 워크플로우
               </h3>
               <p className="text-gray-300 leading-relaxed text-sm">
-                복잡한 마케팅 프로세스를 자동화하여 효율성을 극대화하고, 일관된
-                품질의 결과를 제공합니다.
+                복잡한 마케팅 프로세스를 자동화하여 효율성을 극대화하고,
+                <br />
+                일관된 품질의 결과를 제공합니다.
               </p>
             </div>
           </div>

@@ -131,20 +131,20 @@ const PricingPage = () => {
       {/* Content */}
       <div className="pt-20">
         <BusinessModelSection />
-        
+
         {/* Back to Home - 플랜 선택 박스 아래 중앙 */}
         <div className="flex justify-center mt-8 pb-20">
-          <button
+        <button
             onClick={() => {
               if (typeof window !== "undefined") {
                 sessionStorage.setItem("restoreHomeScroll", "true");
               }
               router.push("/");
             }}
-            className="text-purple-400 hover:text-purple-300 transition-colors text-sm"
-          >
-            ← Home
-          </button>
+          className="text-purple-400 hover:text-purple-300 transition-colors text-sm"
+        >
+          ← Home
+        </button>
         </div>
       </div>
 

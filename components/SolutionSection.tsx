@@ -3,17 +3,23 @@
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const SolutionSection = () => {
-  const { ref, isVisible } = useScrollAnimation(0.2);
+  const { ref: sectionRef, isVisible: isSectionVisible } = useScrollAnimation(0.1);
+
+  // 각 카드에 개별 스크롤 애니메이션 적용
+  const card1 = useScrollAnimation(0.2);
+  const card2 = useScrollAnimation(0.2);
+  const card3 = useScrollAnimation(0.2);
+  const card4 = useScrollAnimation(0.2);
 
   return (
     <section
-      ref={ref}
-      className={`min-h-screen flex items-center justify-center px-4 py-20 transition-opacity duration-1000 ${
-        isVisible ? "opacity-100" : "opacity-0"
-      }`}
+      ref={sectionRef}
+      className="min-h-screen flex items-center justify-center px-4 py-20"
     >
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-8">
+        <h2 className={`text-3xl md:text-4xl font-bold text-white text-center mb-8 transition-opacity duration-1000 ${
+          isSectionVisible ? "opacity-100" : "opacity-0"
+        }`}>
           24시간 스스로 진화하는
           <br />
           AI 마케팅 에이전트{" "}
@@ -27,7 +33,9 @@ const SolutionSection = () => {
         </h2>
         
         {/* Core Statement */}
-        <div className="p-8 rounded-lg mb-12 text-center">
+        <div className={`p-8 rounded-lg mb-12 text-center transition-opacity duration-1000 delay-200 ${
+          isSectionVisible ? "opacity-100" : "opacity-0"
+        }`}>
           <p className="text-xl md:text-2xl text-white leading-relaxed">
             <span className="font-bold text-purple-400">MOLFUSE</span>는 사업자의 데이터를 학습하고
             <br />
@@ -41,7 +49,12 @@ const SolutionSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* 단순 리포트가 아닌 의사결정 중심 */}
           <div
-            className="feature-box-animated p-8 rounded-2xl backdrop-blur-md transition-all duration-300 hover:scale-[1.02]"
+            ref={card1.ref}
+            className={`feature-box-animated p-8 rounded-2xl backdrop-blur-md transition-all duration-700 hover:scale-[1.02] ${
+              card1.isVisible 
+                ? "opacity-100 translate-y-0" 
+                : "opacity-0 translate-y-8"
+            }`}
             style={{
               backgroundColor: 'rgba(12, 0, 32, 0.65)',
               border: '1px solid rgba(147, 51, 234, 0.3)'
@@ -71,7 +84,12 @@ const SolutionSection = () => {
 
           {/* 사람이 대응하지 못하는 속도를 AI가 대신 */}
           <div
-            className="feature-box-animated p-8 rounded-2xl backdrop-blur-md transition-all duration-300 hover:scale-[1.02]"
+            ref={card2.ref}
+            className={`feature-box-animated p-8 rounded-2xl backdrop-blur-md transition-all duration-700 delay-100 hover:scale-[1.02] ${
+              card2.isVisible 
+                ? "opacity-100 translate-y-0" 
+                : "opacity-0 translate-y-8"
+            }`}
             style={{
               backgroundColor: 'rgba(12, 0, 32, 0.65)',
               border: '1px solid rgba(147, 51, 234, 0.3)'
@@ -101,7 +119,12 @@ const SolutionSection = () => {
 
           {/* 손실 캠페인 즉시 차단 */}
           <div
-            className="feature-box-animated p-8 rounded-2xl backdrop-blur-md transition-all duration-300 hover:scale-[1.02]"
+            ref={card3.ref}
+            className={`feature-box-animated p-8 rounded-2xl backdrop-blur-md transition-all duration-700 delay-200 hover:scale-[1.02] ${
+              card3.isVisible 
+                ? "opacity-100 translate-y-0" 
+                : "opacity-0 translate-y-8"
+            }`}
             style={{
               backgroundColor: 'rgba(12, 0, 32, 0.65)',
               border: '1px solid rgba(147, 51, 234, 0.3)'
@@ -131,7 +154,12 @@ const SolutionSection = () => {
 
           {/* 성과 구간 자동 확장 */}
           <div
-            className="feature-box-animated p-8 rounded-2xl backdrop-blur-md transition-all duration-300 hover:scale-[1.02]"
+            ref={card4.ref}
+            className={`feature-box-animated p-8 rounded-2xl backdrop-blur-md transition-all duration-700 delay-300 hover:scale-[1.02] ${
+              card4.isVisible 
+                ? "opacity-100 translate-y-0" 
+                : "opacity-0 translate-y-8"
+            }`}
             style={{
               backgroundColor: 'rgba(12, 0, 32, 0.65)',
               border: '1px solid rgba(147, 51, 234, 0.3)'

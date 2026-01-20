@@ -1,143 +1,159 @@
 "use client";
 
+import React from 'react';
+import { CloudUpload, Brain, PenTool, RefreshCw, RotateCw, TrendingUp } from 'lucide-react';
+import CircularNode from './CircularNode';
+import { ConnectionLines, MobileArrow } from './ConnectionLines';
+import { ProcessItem } from '@/types/process';
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-const steps = [
+// Data Definitions
+const dataUpload: ProcessItem = {
+  id: 'upload',
+  title: '데이터 업로드 & 구조화',
+  subTitle: 'Data Upload & Structuring',
+  icon: CloudUpload,
+  items: ['광고 플랫폼 데이터', '쇼핑몰 / 매출 데이터', '운영 데이터'],
+  position: 'left'
+};
+
+const growth: ProcessItem = {
+  id: 'growth',
+  title: '지속적 수익 성장',
+  subTitle: 'Sustainable Revenue Growth',
+  icon: TrendingUp,
+  items: ['ROI 지속적 개선', '비용 효율성 최적화', '장기적 수익성 확보'],
+  position: 'right'
+};
+
+const cycleItems: ProcessItem[] = [
   {
-    number: "1",
-    title: "데이터 연결",
-    subtitle: "Data Connection",
-    items: [
-      "광고 플랫폼",
-      "쇼핑몰 / 매출 데이터",
-      "운영 데이터"
-    ],
-    icon: (
-      <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-      </svg>
-    ),
+    id: 'strategy',
+    title: '전략·맥락 기반 콘텐츠 생성',
+    subTitle: 'Strategy & Context-based Content Generation',
+    icon: PenTool,
+    items: ['학습된 데이터 기반 전략 수립', '맥락에 맞는 콘텐츠 자동 생성', '캠페인별 맞춤 메시지 최적화'],
+    position: 'center-top'
   },
   {
-    number: "2",
-    title: "AI 학습",
-    subtitle: "AI Learning",
-    description: "RAG 기반 사업자 데이터 학습",
-    detail: "의미 없는 로그 데이터를 의사결정 가능한 데이터로 전환",
-    icon: (
-      <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-      </svg>
-    ),
+    id: 'auto',
+    title: '24/7 실시간 자율 운영',
+    subTitle: '24/7 Real-time Autonomous Operation',
+    icon: RefreshCw,
+    items: ['실시간 ROI 기준 캠페인 조정', '손실 발생 시 즉각 대응', '성과 구간 자동 확장'],
+    position: 'center-right'
   },
   {
-    number: "3",
-    title: "자동 운영",
-    subtitle: "Auto Operation",
-    items: [
-      "실시간 ROI 기준 캠페인 조정",
-      "손실 발생 시 즉각 대응",
-      "성과 구간 자동 확장"
-    ],
-    icon: (
-      <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-      </svg>
-    ),
+    id: 'relearn',
+    title: '결과 재학습 & 전략 진화',
+    subTitle: 'Result Re-learning & Strategy Evolution',
+    icon: RotateCw,
+    items: ['운영 결과 데이터 수집', '성공/실패 패턴 분석', '전략 자동 개선 및 진화'],
+    position: 'center-bottom'
+  },
+  {
+    id: 'rag',
+    title: 'RAG 기반 AI 학습 & 의미화',
+    subTitle: 'RAG-based AI Learning & Semanticization',
+    icon: Brain,
+    items: ['사업자 데이터 학습', '의미 없는 로그를 의사결정 데이터로 전환', '맥락 기반 지식 그래프 구축'],
+    position: 'center-left'
   },
 ];
 
 const HowItWorksSection = () => {
   const { ref, isVisible } = useScrollAnimation(0.2);
+  const TRACK_RADIUS = 280; 
 
   return (
     <section
       ref={ref}
-      className={`min-h-screen flex items-center justify-center px-4 pt-8 pb-20 transition-opacity duration-1000 ${
+      className={`min-h-screen flex items-center justify-center px-[26px] pt-[42px] pb-[400px] transition-opacity duration-1000 ${
         isVisible ? "opacity-100" : "opacity-0"
       }`}
     >
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-8">
-          Molfuse는 이렇게 작동합니다
-        </h2>
-        
-        {/* One-liner */}
-        <p className="text-xl md:text-2xl font-bold text-white text-center mb-12">
-          보여주는 도구가 아니라
-          <br />
-          <span className="text-purple-400">결정하고 실행하는 AI</span>
-        </p>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {steps.map((step, index) => (
-            <div
-              key={index}
-              className="p-8 rounded-2xl backdrop-blur-md"
-              style={{
-                backgroundColor: 'rgba(12, 0, 32, 0.65)',
-                border: '1px solid rgba(18, 0, 48, 0.6)'
-              }}
-            >
-              <div className="flex flex-col items-center text-center">
-                <div className="flex-shrink-0 mb-6">
-                  <div className="w-20 h-20 rounded-full flex items-center justify-center text-3xl font-bold text-purple-400 mb-4 mx-auto"
-                    style={{
-                      backgroundColor: 'rgba(147, 51, 234, 0.2)',
-                      border: '2px solid rgba(147, 51, 234, 0.5)'
-                    }}
-                  >
-                    {step.number}
+      <div className="relative z-10 container mx-auto px-4 py-8 min-h-screen flex flex-col items-center justify-center max-w-[1920px]">
+        {/* Header */}
+        <header className="mb-40 text-center max-w-4xl relative z-30">
+          <div className="inline-block px-3 py-1 mb-3 border border-purple-500/30 rounded-full bg-purple-900/10 backdrop-blur-sm">
+            <span className="text-xs font-semibold tracking-widest text-purple-300 uppercase">System Architecture</span>
+          </div>
+          <h1 className="text-3xl md:text-4xl font-bold mb-3 text-white tracking-tight">
+            AI Growth Intelligence
+          </h1>
+          <p className="text-gray-400 text-base max-w-2xl mx-auto font-normal">
+            데이터가 전략이 되고, 실행으로 이어지며, 지속적인 학습을 통해 스스로 진화하는 생태계
+          </p>
+        </header>
+
+        {/* Diagram Container */}
+        {/* max-w-[1920px] and justify-between ensures maximum distance */}
+        <div 
+          className="relative w-full max-w-[1920px] flex flex-col lg:flex-row items-center justify-between lg:h-[700px]"
+          style={{ '--track-radius': `${TRACK_RADIUS}px` } as React.CSSProperties}
+        >
+          {/* SVG Connection Layer */}
+          <ConnectionLines />
+
+          {/* 1. Left Node: Input (Secondary) */}
+          {/* Pinned to start (left) */}
+          <div className="relative z-20 flex-shrink-0 lg:w-[280px] flex justify-center lg:justify-start lg:pl-12">
+            <CircularNode data={dataUpload} size="medium" variant="secondary" />
                   </div>
-                  <div className="text-purple-400 flex justify-center">
-                    {step.icon}
-                  </div>
+          <MobileArrow />
+
+          {/* 2. Center Hub: Core Cycle (Primary) */}
+          <div className="relative z-20 flex-grow h-[600px] lg:h-full w-full flex items-center justify-center">
+            {/* Visual Tracks */}
+            {/* Main Orbit Track */}
+            <div className="absolute w-[calc(var(--track-radius)*2)] h-[calc(var(--track-radius)*2)] border-2 border-purple-500/20 rounded-full shadow-[0_0_60px_rgba(168,85,247,0.05)]" />
+            
+            {/* Inner Rotating Ring */}
+            <div className="absolute w-[calc(var(--track-radius)*2-40px)] h-[calc(var(--track-radius)*2-40px)] border border-dashed border-purple-500/10 rounded-full animate-[spin_120s_linear_infinite]" />
+            
+            {/* Center Core Label */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+              <div className="w-24 h-24 rounded-full bg-purple-500/5 blur-2xl absolute" />
+              <span className="text-purple-400/80 font-bold text-xs uppercase tracking-[0.2em] mb-1">Autonomous</span>
+              <span className="text-white font-bold text-2xl tracking-tighter">AI AGENT</span>
+              <span className="text-purple-400/80 font-bold text-xs uppercase tracking-[0.2em] mt-1 mb-2">Cycle</span>
+              <span className="text-emerald-500 font-semibold text-sm">Active Learning</span>
                 </div>
                 
-                <div className="flex-1 w-full">
-                  <h3 className="text-2xl font-bold text-white mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="text-sm text-gray-400 mb-4">{step.subtitle}</p>
+            {/* Nodes Container - Positioned precisely on the track */}
+            <div className="relative w-full h-full max-w-[800px] max-h-[800px]">
+              {/* Top Node (RAG) */}
+              <div className="flex justify-center mb-8 lg:mb-0 lg:absolute lg:top-1/2 lg:left-1/2 lg:[transform:translate(-50%,-50%)_translateY(calc(-1*var(--track-radius)))] z-30">
+                <CircularNode data={cycleItems[0]} size="medium" variant="primary" />
+              </div>
+              <MobileArrow />
                   
-                  {step.description && (
-                    <p className="text-lg text-purple-400 font-semibold mb-3">
-                      {step.description}
-                    </p>
-                  )}
-                  
-                  {step.detail && (
-                    <p className="text-gray-300 mb-4">
-                      {step.detail}
-                    </p>
-                  )}
-                  
-                  {step.items && (
-                    <ul className="space-y-2">
-                      {step.items.map((item, idx) => (
-                        <li key={idx} className="flex items-center text-gray-300 justify-center md:justify-start">
-                          <svg
-                            className="w-5 h-5 text-purple-400 mr-2 flex-shrink-0"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M5 13l4 4L19 7"
-                            />
-                          </svg>
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
+              {/* Right Node (Strategy) */}
+              <div className="flex justify-center mb-8 lg:mb-0 lg:absolute lg:top-1/2 lg:left-1/2 lg:[transform:translate(-50%,-50%)_translateX(var(--track-radius))] z-30">
+                <CircularNode data={cycleItems[1]} size="medium" variant="primary" />
+              </div>
+              <MobileArrow />
+
+              {/* Bottom Node (Auto) */}
+              <div className="flex justify-center mb-8 lg:mb-0 lg:absolute lg:top-1/2 lg:left-1/2 lg:[transform:translate(-50%,-50%)_translateY(var(--track-radius))] z-30">
+                <CircularNode data={cycleItems[2]} size="medium" variant="primary" />
+              </div>
+              <MobileArrow />
+
+              {/* Left Node (Re-learn) */}
+              <div className="flex justify-center lg:absolute lg:top-1/2 lg:left-1/2 lg:[transform:translate(-50%,-50%)_translateX(calc(-1*var(--track-radius)))] z-30">
+                <CircularNode data={cycleItems[3]} size="medium" variant="primary" />
               </div>
             </div>
-          ))}
+          </div>
+
+          <MobileArrow />
+
+          {/* 3. Right Node: Output (Secondary) */}
+          {/* Pinned to end (right) */}
+          <div className="relative z-20 flex-shrink-0 lg:w-[280px] flex justify-center lg:justify-end lg:pr-12">
+            <CircularNode data={growth} size="medium" variant="secondary" />
+          </div>
         </div>
       </div>
     </section>
@@ -145,4 +161,3 @@ const HowItWorksSection = () => {
 };
 
 export default HowItWorksSection;
-

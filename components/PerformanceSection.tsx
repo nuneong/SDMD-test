@@ -4,16 +4,6 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const performanceMetrics = [
   {
-    value: "24시간",
-    label: "지속 운영",
-    description: "언제든지 전문가 지식에 접근 가능",
-  },
-  {
-    value: "실시간",
-    label: "업데이트",
-    description: "지식베이스가 즉시 반영",
-  },
-  {
     value: "대용량",
     label: "문서 처리",
     description: "수백 페이지 PDF도 빠르게 처리",
@@ -23,6 +13,16 @@ const performanceMetrics = [
     label: "마케팅",
     description: "수작업 시간을 대폭 절감",
   },
+  {
+    value: "실시간",
+    label: "업데이트",
+    description: "지식베이스가 즉시 반영",
+  },
+  {
+    value: "24시간",
+    label: "지속 운영",
+    description: "언제든지 전문가 지식에 접근 가능",
+  },
 ];
 
 const PerformanceSection = () => {
@@ -31,15 +31,11 @@ const PerformanceSection = () => {
   return (
     <section
       ref={ref}
-      className={`min-h-screen flex items-center justify-center px-4 pt-10 pb-10 transition-opacity duration-1000 ${
+      className={`min-h-screen flex items-center justify-center px-4 pt-[4px] pb-[4px] transition-opacity duration-1000 ${
         isVisible ? "opacity-100" : "opacity-0"
       }`}
     >
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-16">
-          성과 지표
-        </h2>
-        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {performanceMetrics.map((metric, index) => (
             <div

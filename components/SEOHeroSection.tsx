@@ -1,22 +1,21 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { motion } from "framer-motion";
 
 const SEOHeroSection = () => {
+  const router = useRouter();
   const { ref, isVisible } = useScrollAnimation(0.1);
 
   const handleMVPPreview = () => {
-    console.log("MVP 미리보기 클릭");
-    // MVP 미리보기 로직
+    // Get started와 동일한 기능 - /get-started로 이동
+    router.push("/get-started");
   };
 
   const handleHowItWorks = () => {
-    console.log("작동 방식 보기 클릭");
-    // 작동 방식 섹션으로 스크롤
-    const element = document.getElementById('how-it-works');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    // product 페이지로 이동
+    router.push("/product");
   };
 
   return (
@@ -43,31 +42,91 @@ const SEOHeroSection = () => {
 
         {/* Supporting Copy */}
         <div className="space-y-4 mb-8 max-w-3xl mx-auto">
-          <p className="text-lg text-gray-300">
-            불투명한 광고를 데이터로 투명하게
-          </p>
-          <p className="text-lg text-gray-300">
-            손실은 빠르게 차단하고, 성과는 즉시 확장
-          </p>
-          <p className="text-lg text-gray-300">
-            사업자는 제품과 성장에만 집중
-          </p>
+          <div className="flex items-center justify-center gap-3">
+            <svg
+              className="w-6 h-6 text-purple-400 flex-shrink-0"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+            <p className="text-lg text-gray-300">
+              불투명한 광고를 데이터로 투명하게
+            </p>
+          </div>
+          <div className="flex items-center justify-center gap-3">
+            <svg
+              className="w-6 h-6 text-purple-400 flex-shrink-0"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+            <p className="text-lg text-gray-300">
+              손실은 빠르게 차단하고, 성과는 즉시 확장
+            </p>
+          </div>
+          <div className="flex items-center justify-center gap-3">
+            <svg
+              className="w-6 h-6 text-purple-400 flex-shrink-0"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+            <p className="text-lg text-gray-300">
+              사업자는 제품과 성장에만 집중
+            </p>
+          </div>
         </div>
 
         {/* Trust Micro Copy */}
-        <div
-          className="p-6 rounded-lg backdrop-blur-md mb-12 max-w-2xl mx-auto"
+        <motion.div
+          className="p-6 rounded-lg backdrop-blur-md mb-12 max-w-2xl mx-auto relative overflow-hidden metallic-shine"
           style={{
             backgroundColor: 'rgba(12, 0, 32, 0.65)',
             border: '1px solid rgba(18, 0, 48, 0.6)'
           }}
+          whileHover={{ 
+            scale: 1.05, 
+            y: -2,
+            borderColor: 'rgba(147, 51, 234, 0.8)',
+            backgroundColor: 'rgba(18, 0, 48, 0.75)',
+            boxShadow: '0 10px 40px rgba(147, 51, 234, 0.3)'
+          }}
+          whileTap={{ scale: 0.98 }}
+          transition={{ 
+            type: "spring", 
+            stiffness: 300, 
+            damping: 20 
+          }}
         >
-          <p className="text-gray-300 leading-relaxed">
+          {/* Shine overlay */}
+          <div className="absolute inset-0 shine-overlay pointer-events-none"></div>
+          <p className="text-gray-300 leading-relaxed relative z-10">
             <span className="text-purple-400 font-semibold">RAG 기반 사업자 데이터 학습</span>
             <br />
             광고·매출·운영 데이터를 하나의 ROI 시그널로 통합
           </p>
-        </div>
+        </motion.div>
 
         {/* CTA Buttons */}
         <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
@@ -86,7 +145,7 @@ const SEOHeroSection = () => {
               e.currentTarget.style.background = 'linear-gradient(to right, rgba(147, 51, 234, 0.8), rgba(126, 34, 206, 0.8))';
             }}
           >
-            👉 MVP 미리보기
+            MVP 사용해보기
           </button>
 
           {/* Secondary CTA */}
@@ -107,7 +166,7 @@ const SEOHeroSection = () => {
               e.currentTarget.style.borderColor = 'rgba(147, 51, 234, 0.5)';
             }}
           >
-            👉 작동 방식 보기
+            작동 방식 보기
           </button>
         </div>
       </div>
