@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { FEATURES, FeatureItem } from "@/constants/stickyScrollReveal";
 import AutomationVisualizer from "@/components/AutomationVisualizer";
+import TwentyFourHourOperation from "@/components/TwentyFourHourOperation";
 
 // Internal component for the sequenced Real-time Dashboard animation
 const RealTimeDashboard = () => {
@@ -321,7 +322,7 @@ const DocumentScanVisual = () => {
           {/* 첫 번째 팝업 데이터 박스 - 좌측 상단, 조화로운 비율로 조정 */}
           <div
             className="absolute top-[20%] left-[8%] bg-gray-800 border border-amber-500/30 p-2.5 rounded-md shadow-lg animate-[pop-data-wait_4s_linear_infinite]"
-            style={{ animationDelay: "0.3s" }}
+            style={{ animationDelay: "4.7s", opacity: 0 }}
           >
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-amber-500" />
@@ -332,7 +333,7 @@ const DocumentScanVisual = () => {
           {/* 두 번째 팝업 데이터 박스 - 우측 중상단, 조화로운 비율로 조정 */}
           <div
             className="absolute top-[28%] right-[8%] bg-gray-800 border border-amber-500/30 p-2.5 rounded-md shadow-lg animate-[pop-data-wait_4s_linear_infinite]"
-            style={{ animationDelay: "0.5s" }}
+            style={{ animationDelay: "5s", opacity: 0 }}
           >
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-amber-500" />
@@ -702,8 +703,8 @@ const StickyScrollReveal: React.FC = () => {
         return <AutomationVisualizer />;
 
       case 2:
-        // 24시간 지속 운영 - 빈 박스
-        return <div className="w-full h-full" />;
+        // 24시간 지속 운영
+        return <TwentyFourHourOperation />;
 
       case 3:
         return <RealTimeDashboard />;
