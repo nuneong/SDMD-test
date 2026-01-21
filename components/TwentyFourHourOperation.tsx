@@ -50,7 +50,7 @@ export default function TwentyFourHourOperation() {
                 key={currentPhase}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-sm font-medium text-slate-200 bg-slate-900/80 px-8 py-[10.5px] rounded-full border border-slate-700/50 shadow-[0_4px_20px_rgba(0,0,0,0.5)] backdrop-blur-md whitespace-nowrap"
+                className="text-sm font-medium text-slate-200 bg-slate-900/80 px-8 py-3 rounded-full border border-slate-700/50 shadow-[0_4px_20px_rgba(0,0,0,0.5)] backdrop-blur-md whitespace-nowrap"
               >
                 {getPhaseDescription(currentPhase)}
               </motion.div>

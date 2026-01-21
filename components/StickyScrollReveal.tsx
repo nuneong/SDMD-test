@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { FEATURES, FeatureItem } from "@/constants/stickyScrollReveal";
 import AutomationVisualizer from "@/components/AutomationVisualizer";
 import TwentyFourHourOperation from "@/components/TwentyFourHourOperation";
@@ -656,6 +657,9 @@ const StickyScrollReveal: React.FC = () => {
   const [activeCard, setActiveCard] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const mobileScrollRef = useRef<HTMLDivElement>(null);
+  const [mobileActiveIndex, setMobileActiveIndex] = useState(0);
+  const [hoveredButton, setHoveredButton] = useState<"prev" | "next" | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -686,6 +690,37 @@ const StickyScrollReveal: React.FC = () => {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // 모바일 가로 스크롤 감지
+  useEffect(() => {
+    const handleMobileScroll = () => {
+      if (!mobileScrollRef.current) return;
+
+      const scrollLeft = mobileScrollRef.current.scrollLeft;
+      const cardWidth = mobileScrollRef.current.clientWidth;
+      const currentIndex = Math.round(scrollLeft / cardWidth);
+
+      if (
+        currentIndex !== mobileActiveIndex &&
+        currentIndex >= 0 &&
+        currentIndex < FEATURES.length
+      ) {
+        setMobileActiveIndex(currentIndex);
+      }
+    };
+
+    const scrollContainer = mobileScrollRef.current;
+    if (scrollContainer) {
+      scrollContainer.addEventListener("scroll", handleMobileScroll, {
+        passive: true,
+      });
+      handleMobileScroll(); // 초기값 설정
+
+      return () => {
+        scrollContainer.removeEventListener("scroll", handleMobileScroll);
+      };
+    }
+  }, [mobileActiveIndex]);
 
   const scrollToSection = (index: number) => {
     cardRefs.current[index]?.scrollIntoView({
@@ -852,38 +887,188 @@ const StickyScrollReveal: React.FC = () => {
           </div>
         </div>
 
-        <div className="lg:hidden flex flex-col gap-12">
-          {FEATURES.map((feature, index) => (
-            <div
-              key={index}
-              className="bg-gray-900 border border-gray-800 rounded-2xl p-8 overflow-hidden relative"
-            >
-              <div
-                className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${feature.color} opacity-20 blur-2xl rounded-full`}
-              />
-              <h3
-                className={`text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${feature.color} mb-2`}
+        {/* 모바일 뷰 - 가로 슬라이드 카드형 */}
+        <div className="lg:hidden relative">
+          {/* 이전 버튼 */}
+          {mobileActiveIndex > 0 && (() => {
+            const prevFeature = FEATURES[mobileActiveIndex - 1];
+            const iconColorMap: { [key: string]: string } = {
+              "from-amber-500 to-orange-600": "rgb(245, 158, 11)",
+              "from-emerald-500 to-cyan-600": "rgb(16, 185, 129)",
+              "from-purple-600 to-blue-600": "rgb(147, 51, 234)",
+              "from-pink-600 to-rose-600": "rgb(219, 39, 119)",
+              "from-lime-400 to-green-600": "rgb(163, 230, 53)",
+              "from-red-600 to-orange-600": "rgb(220, 38, 38)",
+            };
+            const iconColor = hoveredButton === "prev" 
+              ? iconColorMap[prevFeature.color] || "rgb(255, 255, 255)"
+              : "rgb(255, 255, 255)";
+            return (
+              <button
+                onClick={() => {
+                  if (mobileScrollRef.current) {
+                    const cardWidth = mobileScrollRef.current.clientWidth;
+                    const newIndex = mobileActiveIndex - 1;
+                    mobileScrollRef.current.scrollTo({
+                      left: cardWidth * newIndex,
+                      behavior: "smooth",
+                    });
+                  }
+                }}
+                className="absolute left-[1px] top-1/2 -translate-y-1/2 z-20 w-[42px] h-[42px] rounded-full bg-gray-800/50 backdrop-blur-sm flex items-center justify-center transition-all duration-200"
+                onMouseEnter={() => setHoveredButton("prev")}
+                onMouseLeave={() => setHoveredButton(null)}
+                aria-label="Previous card"
               >
-                {feature.title}
-              </h3>
-              <div className="text-2xl font-bold text-white mb-4">
-                {feature.highlight}
-              </div>
-              <p className="text-gray-400 leading-relaxed mb-6">
-                {feature.description}
-              </p>
+                <ChevronLeft className="w-6 h-6 transition-colors duration-200" style={{ color: iconColor }} strokeWidth={4.5} />
+              </button>
+            );
+          })()}
 
-              {/* 모바일 뷰 애니메이션 박스 - 카드 아래에 위치 */}
-              <div className="mt-6 flex items-center justify-center w-full">
-                <div className="w-full max-w-[550px] h-[300px] sm:h-[350px] md:h-[400px] rounded-3xl overflow-hidden shadow-2xl border border-gray-800 bg-black/80 backdrop-blur-md relative flex items-center justify-center">
-                  <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] opacity-20 pointer-events-none" />
-                  <div className="w-full h-full flex items-center justify-center p-2 sm:p-4 scale-90 sm:scale-95 md:scale-100">
-                    {renderCardVisual(index, feature.color)}
+          {/* 다음 버튼 */}
+          {mobileActiveIndex < FEATURES.length - 1 && (() => {
+            const nextFeature = FEATURES[mobileActiveIndex + 1];
+            const iconColorMap: { [key: string]: string } = {
+              "from-amber-500 to-orange-600": "rgb(245, 158, 11)",
+              "from-emerald-500 to-cyan-600": "rgb(16, 185, 129)",
+              "from-purple-600 to-blue-600": "rgb(147, 51, 234)",
+              "from-pink-600 to-rose-600": "rgb(219, 39, 119)",
+              "from-lime-400 to-green-600": "rgb(163, 230, 53)",
+              "from-red-600 to-orange-600": "rgb(220, 38, 38)",
+            };
+            const iconColor = hoveredButton === "next" 
+              ? iconColorMap[nextFeature.color] || "rgb(255, 255, 255)"
+              : "rgb(255, 255, 255)";
+            return (
+              <button
+                onClick={() => {
+                  if (mobileScrollRef.current) {
+                    const cardWidth = mobileScrollRef.current.clientWidth;
+                    const newIndex = mobileActiveIndex + 1;
+                    mobileScrollRef.current.scrollTo({
+                      left: cardWidth * newIndex,
+                      behavior: "smooth",
+                    });
+                  }
+                }}
+                className="absolute right-[1px] top-1/2 -translate-y-1/2 z-20 w-[42px] h-[42px] rounded-full bg-gray-800/50 backdrop-blur-sm flex items-center justify-center transition-all duration-200"
+                onMouseEnter={() => setHoveredButton("next")}
+                onMouseLeave={() => setHoveredButton(null)}
+                aria-label="Next card"
+              >
+                <ChevronRight className="w-6 h-6 transition-colors duration-200" style={{ color: iconColor }} strokeWidth={4.5} />
+              </button>
+            );
+          })()}
+
+          {/* 가로 스크롤 컨테이너 */}
+          <div
+            ref={mobileScrollRef}
+            className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide"
+            style={{
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+              WebkitOverflowScrolling: "touch",
+            }}
+          >
+            {FEATURES.map((feature, index) => (
+              <div key={index} className="flex-shrink-0 w-full snap-start px-4">
+                <div className="bg-gray-900 border border-gray-800 rounded-2xl p-6 sm:p-8 overflow-hidden relative mx-auto max-w-md">
+                  <div
+                    className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${feature.color} opacity-20 blur-2xl rounded-full`}
+                  />
+                  <h3
+                    className={`text-2xl sm:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${feature.color} mb-2`}
+                  >
+                    {feature.title}
+                  </h3>
+                  <div className="text-xl sm:text-2xl font-bold text-white mb-4">
+                    {feature.highlight}
+                  </div>
+                  <p className="text-gray-400 leading-relaxed mb-6 text-sm sm:text-base">
+                    {feature.description}
+                  </p>
+
+                  {/* 모바일 뷰 애니메이션 박스 - 카드 아래에 위치 */}
+                  <div className="mt-6 flex items-center justify-center w-full">
+                    <div className="w-full max-w-[550px] h-[300px] sm:h-[350px] rounded-3xl overflow-hidden shadow-2xl border border-gray-800 bg-black/80 backdrop-blur-md relative flex items-center justify-center">
+                      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] opacity-20 pointer-events-none" />
+                      <div className="w-full h-full flex items-center justify-center p-2 sm:p-4 scale-90 sm:scale-95">
+                        {renderCardVisual(index, feature.color)}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          {/* 인디케이터 */}
+          <div className="flex justify-center gap-2 mt-6">
+            {FEATURES.map((feature, index) => {
+              // 각 feature의 색상을 명확하게 적용
+              const getColorStyle = () => {
+                if (mobileActiveIndex !== index) return {};
+                const colorMap: { [key: string]: string } = {
+                  "from-amber-500 to-orange-600":
+                    "linear-gradient(to right, rgb(245, 158, 11), rgb(234, 88, 12))",
+                  "from-emerald-500 to-cyan-600":
+                    "linear-gradient(to right, rgb(16, 185, 129), rgb(8, 145, 178))",
+                  "from-purple-600 to-blue-600":
+                    "linear-gradient(to right, rgb(147, 51, 234), rgb(37, 99, 235))",
+                  "from-pink-600 to-rose-600":
+                    "linear-gradient(to right, rgb(219, 39, 119), rgb(225, 29, 72))",
+                  "from-lime-400 to-green-600":
+                    "linear-gradient(to right, rgb(163, 230, 53), rgb(22, 163, 74))",
+                  "from-red-600 to-orange-600":
+                    "linear-gradient(to right, rgb(220, 38, 38), rgb(234, 88, 12))",
+                };
+
+                // 각 컬러에 맞는 glow 효과 색상
+                const glowColorMap: { [key: string]: string } = {
+                  "from-amber-500 to-orange-600": "rgba(245, 158, 11, 0.6)",
+                  "from-emerald-500 to-cyan-600": "rgba(16, 185, 129, 0.6)",
+                  "from-purple-600 to-blue-600": "rgba(147, 51, 234, 0.6)",
+                  "from-pink-600 to-rose-600": "rgba(219, 39, 119, 0.6)",
+                  "from-lime-400 to-green-600": "rgba(163, 230, 53, 0.6)",
+                  "from-red-600 to-orange-600": "rgba(220, 38, 38, 0.6)",
+                };
+
+                return {
+                  background:
+                    colorMap[feature.color] ||
+                    `linear-gradient(to right, ${feature.color})`,
+                  boxShadow: `0 0 12px ${
+                    glowColorMap[feature.color] || "rgba(255, 255, 255, 0.6)"
+                  }, 0 0 20px ${
+                    glowColorMap[feature.color] || "rgba(255, 255, 255, 0.4)"
+                  }`,
+                };
+              };
+
+              return (
+                <button
+                  key={index}
+                  onClick={() => {
+                    if (mobileScrollRef.current) {
+                      const cardWidth = mobileScrollRef.current.clientWidth;
+                      mobileScrollRef.current.scrollTo({
+                        left: cardWidth * index,
+                        behavior: "smooth",
+                      });
+                    }
+                  }}
+                  className={`transition-all duration-300 rounded-full ${
+                    mobileActiveIndex === index
+                      ? "w-8 h-2"
+                      : "w-2 h-2 bg-gray-600"
+                  }`}
+                  style={getColorStyle()}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
