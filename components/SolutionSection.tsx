@@ -57,7 +57,7 @@ const SolutionSection = () => {
             }`}
             style={{
               backgroundColor: 'rgba(12, 0, 32, 0.65)',
-              border: '1px solid rgba(147, 51, 234, 0.3)'
+              border: '0.5px solid rgba(147, 51, 234, 0.3)'
             }}
           >
             <div className="flex items-start gap-4">
@@ -92,7 +92,7 @@ const SolutionSection = () => {
             }`}
             style={{
               backgroundColor: 'rgba(12, 0, 32, 0.65)',
-              border: '1px solid rgba(147, 51, 234, 0.3)'
+              border: '0.5px solid rgba(147, 51, 234, 0.3)'
             }}
           >
             <div className="flex items-start gap-4">
@@ -127,7 +127,7 @@ const SolutionSection = () => {
             }`}
             style={{
               backgroundColor: 'rgba(12, 0, 32, 0.65)',
-              border: '1px solid rgba(147, 51, 234, 0.3)'
+              border: '0.5px solid rgba(147, 51, 234, 0.3)'
             }}
           >
             <div className="flex items-start gap-4">
@@ -162,7 +162,7 @@ const SolutionSection = () => {
             }`}
             style={{
               backgroundColor: 'rgba(12, 0, 32, 0.65)',
-              border: '1px solid rgba(147, 51, 234, 0.3)'
+              border: '0.5px solid rgba(147, 51, 234, 0.3)'
             }}
           >
             <div className="flex items-start gap-4">

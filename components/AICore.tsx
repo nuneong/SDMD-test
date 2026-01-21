@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Cpu } from 'lucide-react';
+import Orb from './Orb';
 
 export const AICore: React.FC = () => {
   return (
@@ -12,30 +13,20 @@ export const AICore: React.FC = () => {
         transition={{ duration: 3, repeat: Infinity }}
       />
       
-      {/* Hexagon Structure Layers */}
-      <motion.div 
-        className="relative w-32 h-32 flex items-center justify-center"
-        animate={{ rotate: -360 }}
-        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-      >
-         <svg viewBox="0 0 100 100" className="w-full h-full fill-none stroke-cyan-500/50 stroke-1">
-            <polygon points="50 1, 95 25, 95 75, 50 99, 5 75, 5 25" />
-         </svg>
-      </motion.div>
-
-      <motion.div 
-        className="absolute w-24 h-24 flex items-center justify-center"
-        animate={{ rotate: 360 }}
-        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-      >
-         <svg viewBox="0 0 100 100" className="w-full h-full fill-none stroke-cyan-400 stroke-[2]">
-            <polygon points="50 5, 90 27, 90 73, 50 95, 10 73, 10 27" />
-         </svg>
-      </motion.div>
+      {/* Orb Effect */}
+      <div className="relative w-32 h-32 flex items-center justify-center scale-[1.495]">
+        <Orb
+          hoverIntensity={0.5}
+          rotateOnHover={true}
+          hue={0}
+          forceHoverState={false}
+          backgroundColor="#0a0a0a"
+        />
+      </div>
 
       {/* Central Brain Icon */}
-      <div className="absolute bg-slate-900 rounded-full p-4 border border-cyan-500/50 shadow-[0_0_30px_rgba(6,182,212,0.4)]">
-        <Cpu className="w-8 h-8 text-cyan-300" />
+      <div className="absolute bg-slate-900 rounded-full p-4 border border-purple-500/50 shadow-[0_0_30px_rgba(168,85,247,0.4)] scale-[1.3]">
+        <Cpu className="w-8 h-8 text-purple-400" />
       </div>
     </div>
   );

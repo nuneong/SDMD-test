@@ -41,20 +41,20 @@ export default function TwentyFourHourOperation() {
           <AICore />
 
           {/* Status Message Overlay */}
-          <div className="absolute -bottom-[88px] left-0 right-0 text-center w-full flex flex-col items-center translate-x-[10px]">
-            <motion.div
-              key={currentPhase}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="flex flex-col items-center"
-            >
-              <div className="text-xs font-mono text-cyan-500 mb-2 uppercase tracking-[0.2em] opacity-80">
+          <div className="absolute -bottom-[48px] left-0 right-0 text-center w-full flex flex-col items-center translate-x-0 -translate-y-[25px]">
+            <div className="flex flex-col items-center">
+              <div className="text-xs font-mono font-bold text-purple-400 mb-2 uppercase tracking-[0.2em] opacity-80">
                 System Status
               </div>
-              <div className="text-sm font-medium text-slate-200 bg-slate-900/80 px-8 py-3 rounded-full border border-slate-700/50 shadow-[0_4px_20px_rgba(0,0,0,0.5)] backdrop-blur-md whitespace-nowrap">
+              <motion.div
+                key={currentPhase}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-sm font-medium text-slate-200 bg-slate-900/80 px-8 py-[10.5px] rounded-full border border-slate-700/50 shadow-[0_4px_20px_rgba(0,0,0,0.5)] backdrop-blur-md whitespace-nowrap"
+              >
                 {getPhaseDescription(currentPhase)}
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
           </div>
         </div>
       </div>

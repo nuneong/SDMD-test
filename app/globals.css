@@ -134,7 +134,7 @@ body {
 .feature-box-animated::before {
   content: '';
   position: absolute;
-  inset: -5px;
+  inset: -2.325px;
   border-radius: inherit;
   background: linear-gradient(
     90deg,
@@ -160,7 +160,7 @@ body {
     linear-gradient(#fff 0 0) content-box, 
     linear-gradient(#fff 0 0);
   mask-composite: exclude;
-  padding: 5px;
+  padding: 2.325px;
   filter: drop-shadow(0 0 8px rgba(76, 194, 233, 0.6)) drop-shadow(0 0 12px rgba(156, 67, 254, 0.4));
 }
 
@@ -173,6 +173,12 @@ body {
 .feature-box-animated > * {
   position: relative;
   z-index: 1;
+}
+
+/* FAQ Section specific styles - thicker border needs larger inset */
+.feature-box-animated.faq-item::before {
+  inset: -4px;
+  padding: 4px;
 }
 
 @keyframes border-sweep {

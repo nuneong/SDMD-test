@@ -43,7 +43,7 @@ const ValueProposition = () => {
               className="feature-box-animated rounded-2xl p-6 backdrop-blur-md transition-transform duration-300 hover:scale-105"
               style={{
                 backgroundColor: "rgba(12, 0, 32, 0.65)",
-                border: "1px solid rgba(18, 0, 48, 0.6)",
+                border: "0.5px solid rgba(18, 0, 48, 0.6)",
               }}
             >
               <div className="mb-4 flex justify-center">
@@ -75,7 +75,7 @@ const ValueProposition = () => {
               className="feature-box-animated rounded-2xl p-6 backdrop-blur-md transition-transform duration-300 hover:scale-105"
               style={{
                 backgroundColor: "rgba(12, 0, 32, 0.65)",
-                border: "1px solid rgba(18, 0, 48, 0.6)",
+                border: "0.5px solid rgba(18, 0, 48, 0.6)",
               }}
             >
               <div className="mb-4 flex justify-center">
@@ -109,7 +109,7 @@ const ValueProposition = () => {
               className="feature-box-animated rounded-2xl p-6 backdrop-blur-md transition-transform duration-300 hover:scale-105"
               style={{
                 backgroundColor: "rgba(12, 0, 32, 0.65)",
-                border: "1px solid rgba(18, 0, 48, 0.6)",
+                border: "0.5px solid rgba(18, 0, 48, 0.6)",
               }}
             >
               <div className="mb-4 flex justify-center">
@@ -141,7 +141,7 @@ const ValueProposition = () => {
               className="feature-box-animated rounded-2xl p-6 backdrop-blur-md transition-transform duration-300 hover:scale-105"
               style={{
                 backgroundColor: "rgba(12, 0, 32, 0.65)",
-                border: "1px solid rgba(18, 0, 48, 0.6)",
+                border: "0.5px solid rgba(18, 0, 48, 0.6)",
               }}
             >
               <div className="mb-4 flex justify-center">

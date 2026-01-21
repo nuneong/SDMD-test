@@ -69,30 +69,24 @@ export const OrbitNodes: React.FC<OrbitNodesProps> = ({ onPhaseChange }) => {
         // Calculate position on a circle of radius 130px
         const rad = (node.angle - 90) * (Math.PI / 180);
         const radius = 130;
-        const x = Math.cos(rad) * radius;
+        let x = Math.cos(rad) * radius;
         const y = Math.sin(rad) * radius;
+        
+        // Move campaign node (rocket icon) 1.5px to the right and 1px down
+        let yOffset = 10;
+        if (node.id === 'campaign') {
+          x += 1.5;
+          yOffset += 1;
+        }
 
         return (
           <div 
             key={node.id}
             className="absolute flex flex-col items-center justify-center"
             style={{ 
-                transform: `translate(${x}px, ${y}px)` 
+                transform: `translate(${x}px, ${y + yOffset}px)` 
             }}
           >
-            {/* Connection Beam to Center when Active */}
-            <AnimatePresence>
-                {isActive && (
-                    <motion.div 
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: radius - 30, opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        style={{ rotate: `${node.angle + 180}deg`, transformOrigin: 'top center' }}
-                        className="absolute top-1/2 left-1/2 w-[2px] bg-gradient-to-b from-transparent via-cyan-400 to-transparent -z-10"
-                    />
-                )}
-            </AnimatePresence>
-
             {/* The Node Icon */}
             <motion.div 
               className={cn(
@@ -116,7 +110,7 @@ export const OrbitNodes: React.FC<OrbitNodesProps> = ({ onPhaseChange }) => {
                     "mt-3 text-xs font-bold tracking-wider uppercase px-2 py-1 rounded bg-slate-900/80 border border-slate-700",
                     isActive ? "text-white opacity-100" : "text-slate-500 opacity-0"
                 )}
-                animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : -10 }}
+                animate={{ opacity: isActive ? 1 : 0, y: isActive ? -3.5 : -10 }}
             >
                 {node.label}
             </motion.div>
@@ -129,8 +123,8 @@ export const OrbitNodes: React.FC<OrbitNodesProps> = ({ onPhaseChange }) => {
         {activePhase === 'analysis' && (
              <motion.div 
                 key="insight1"
-                initial={{ opacity: 0, x: 50, y: -50 }}
-                animate={{ opacity: 1, x: 160, y: -100 }}
+                initial={{ opacity: 0, x: 50, y: 40 }}
+                animate={{ opacity: 1, x: 160, y: -10 }}
                 exit={{ opacity: 0, scale: 0 }}
                 className="absolute flex items-center gap-2 text-xs text-violet-300 bg-violet-900/40 p-2 rounded-lg border border-violet-500/30"
              >
@@ -151,8 +145,8 @@ export const OrbitNodes: React.FC<OrbitNodesProps> = ({ onPhaseChange }) => {
          {activePhase === 'campaign' && (
              <motion.div 
                 key="camp1"
-                initial={{ opacity: 0, x: 45, y: -150 }}
-                animate={{ opacity: 1, x: 45, y: -205 }}
+                initial={{ opacity: 0, x: 96.5, y: -142 }}
+                animate={{ opacity: 1, x: 96.5, y: -197 }}
                 exit={{ opacity: 0, scale: 0 }}
                 className="absolute flex items-center gap-2 text-xs text-rose-300 bg-rose-900/40 p-2 rounded-lg border border-rose-500/30"
              >
@@ -164,7 +158,7 @@ export const OrbitNodes: React.FC<OrbitNodesProps> = ({ onPhaseChange }) => {
       {/* Cycle Counter (Evolution Metric) */}
       <div className="absolute top-10 left-10 text-slate-500 text-sm font-mono">
         <div className="flex flex-col">
-            <span className="text-xs uppercase tracking-widest mb-1">Total Cycles</span>
+            <span className="text-xs uppercase tracking-widest mb-1 font-bold">Total Cycles</span>
             <span className="text-2xl text-white font-bold">{cycleCount.toString().padStart(4, '0')}</span>
         </div>
       </div>

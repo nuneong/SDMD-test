@@ -27,7 +27,7 @@ export const TimeRing: React.FC<TimeRingProps> = ({ speedMultiplier = 1 }) => {
       
       {/* Time Gradient Ring */}
       <motion.div 
-        className="absolute w-[450px] h-[450px] rounded-full border-2 border-transparent"
+        className="absolute w-[405px] h-[405px] rounded-full border-2 border-transparent"
         style={{
              background: `conic-gradient(from 0deg, 
                 #0f172a 0deg, 
@@ -45,7 +45,7 @@ export const TimeRing: React.FC<TimeRingProps> = ({ speedMultiplier = 1 }) => {
 
       {/* Orbiting Sun/Moon Indicator */}
       <motion.div 
-        className="absolute w-[450px] h-[450px]"
+        className="absolute w-[405px] h-[405px]"
         animate={{ rotate: 360 }}
         transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
       >
@@ -58,10 +58,12 @@ export const TimeRing: React.FC<TimeRingProps> = ({ speedMultiplier = 1 }) => {
       </motion.div>
 
       {/* Digital Time Display (Floating near bottom right) */}
-      <div className="absolute bottom-10 right-10 bg-slate-800/80 backdrop-blur border border-slate-700 px-4 py-2 rounded-lg flex items-center gap-3 shadow-lg">
-        <Clock className="w-4 h-4 text-emerald-400 animate-pulse" />
-        <span className="font-mono text-xl text-emerald-400 font-bold">{formattedTime}</span>
-        <span className="text-xs text-slate-400 font-medium">REAL-TIME OPS</span>
+      <div className="absolute -bottom-[48px] right-10 translate-x-[110px] -translate-y-[20.5px] flex flex-col items-center gap-2">
+        <span className="text-xs text-slate-400 font-medium translate-y-[2px]">REAL-TIME OPS</span>
+        <div className="flex items-center gap-2">
+          <Clock className="w-4 h-4 text-purple-400 animate-pulse" />
+          <span className="font-mono text-xl text-purple-400 font-bold">{formattedTime}</span>
+        </div>
       </div>
     </div>
   );

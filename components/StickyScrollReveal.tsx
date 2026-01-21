@@ -869,9 +869,19 @@ const StickyScrollReveal: React.FC = () => {
               <div className="text-2xl font-bold text-white mb-4">
                 {feature.highlight}
               </div>
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-gray-400 leading-relaxed mb-6">
                 {feature.description}
               </p>
+
+              {/* 모바일 뷰 애니메이션 박스 - 카드 아래에 위치 */}
+              <div className="mt-6 flex items-center justify-center w-full">
+                <div className="w-full max-w-[550px] h-[300px] sm:h-[350px] md:h-[400px] rounded-3xl overflow-hidden shadow-2xl border border-gray-800 bg-black/80 backdrop-blur-md relative flex items-center justify-center">
+                  <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] opacity-20 pointer-events-none" />
+                  <div className="w-full h-full flex items-center justify-center p-2 sm:p-4 scale-90 sm:scale-95 md:scale-100">
+                    {renderCardVisual(index, feature.color)}
+                  </div>
+                </div>
+              </div>
             </div>
           ))}
         </div>

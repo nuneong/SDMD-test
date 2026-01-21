@@ -60,23 +60,26 @@ const FAQSection = () => {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className={`feature-box-animated rounded-lg backdrop-blur-md transition-all duration-300 overflow-hidden hover:scale-[1.02] ${
+              className={`feature-box-animated faq-item rounded-lg backdrop-blur-md transition-all duration-300 overflow-hidden hover:scale-[1.02] ${
                 openIndex === index ? "faq-open" : ""
               }`}
               style={{
-                backgroundColor: openIndex === index 
-                  ? "rgba(20, 8, 48, 0.75)" 
-                  : "rgba(12, 0, 32, 0.65)",
-                border: "1px solid rgba(18, 0, 48, 0.6)",
+                backgroundColor:
+                  openIndex === index
+                    ? "rgba(20, 8, 48, 0.75)"
+                    : "rgba(12, 0, 32, 0.65)",
+                border: "2px solid rgba(18, 0, 48, 0.6)",
               }}
               onMouseEnter={(e) => {
                 if (openIndex !== index) {
-                  e.currentTarget.style.backgroundColor = "rgba(20, 8, 48, 0.7)";
+                  e.currentTarget.style.backgroundColor =
+                    "rgba(20, 8, 48, 0.7)";
                 }
               }}
               onMouseLeave={(e) => {
                 if (openIndex !== index) {
-                  e.currentTarget.style.backgroundColor = "rgba(12, 0, 32, 0.65)";
+                  e.currentTarget.style.backgroundColor =
+                    "rgba(12, 0, 32, 0.65)";
                 }
               }}
             >
