@@ -43,7 +43,7 @@ const Footer = () => {
               
               {/* Instagram */}
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/sumdemand/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-purple-400 transition-colors duration-300"
@@ -54,7 +54,7 @@ const Footer = () => {
               
               {/* Threads */}
               <a
-                href="https://threads.net"
+                href="https://www.threads.com/@sumdemand"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-purple-400 transition-colors duration-300"
