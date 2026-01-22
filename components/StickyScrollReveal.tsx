@@ -659,7 +659,9 @@ const StickyScrollReveal: React.FC = () => {
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const mobileScrollRef = useRef<HTMLDivElement>(null);
   const [mobileActiveIndex, setMobileActiveIndex] = useState(0);
-  const [hoveredButton, setHoveredButton] = useState<"prev" | "next" | null>(null);
+  const [hoveredButton, setHoveredButton] = useState<"prev" | "next" | null>(
+    null
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -890,76 +892,88 @@ const StickyScrollReveal: React.FC = () => {
         {/* 모바일 뷰 - 가로 슬라이드 카드형 */}
         <div className="lg:hidden relative">
           {/* 이전 버튼 */}
-          {mobileActiveIndex > 0 && (() => {
-            const prevFeature = FEATURES[mobileActiveIndex - 1];
-            const iconColorMap: { [key: string]: string } = {
-              "from-amber-500 to-orange-600": "rgb(245, 158, 11)",
-              "from-emerald-500 to-cyan-600": "rgb(16, 185, 129)",
-              "from-purple-600 to-blue-600": "rgb(147, 51, 234)",
-              "from-pink-600 to-rose-600": "rgb(219, 39, 119)",
-              "from-lime-400 to-green-600": "rgb(163, 230, 53)",
-              "from-red-600 to-orange-600": "rgb(220, 38, 38)",
-            };
-            const iconColor = hoveredButton === "prev" 
-              ? iconColorMap[prevFeature.color] || "rgb(255, 255, 255)"
-              : "rgb(255, 255, 255)";
-            return (
-              <button
-                onClick={() => {
-                  if (mobileScrollRef.current) {
-                    const cardWidth = mobileScrollRef.current.clientWidth;
-                    const newIndex = mobileActiveIndex - 1;
-                    mobileScrollRef.current.scrollTo({
-                      left: cardWidth * newIndex,
-                      behavior: "smooth",
-                    });
-                  }
-                }}
-                className="absolute left-[1px] top-1/2 -translate-y-1/2 z-20 w-[42px] h-[42px] rounded-full bg-gray-800/50 backdrop-blur-sm flex items-center justify-center transition-all duration-200"
-                onMouseEnter={() => setHoveredButton("prev")}
-                onMouseLeave={() => setHoveredButton(null)}
-                aria-label="Previous card"
-              >
-                <ChevronLeft className="w-6 h-6 transition-colors duration-200" style={{ color: iconColor }} strokeWidth={4.5} />
-              </button>
-            );
-          })()}
+          {mobileActiveIndex > 0 &&
+            (() => {
+              const prevFeature = FEATURES[mobileActiveIndex - 1];
+              const iconColorMap: { [key: string]: string } = {
+                "from-amber-500 to-orange-600": "rgb(245, 158, 11)",
+                "from-emerald-500 to-cyan-600": "rgb(16, 185, 129)",
+                "from-purple-600 to-blue-600": "rgb(147, 51, 234)",
+                "from-pink-600 to-rose-600": "rgb(219, 39, 119)",
+                "from-lime-400 to-green-600": "rgb(163, 230, 53)",
+                "from-red-600 to-orange-600": "rgb(220, 38, 38)",
+              };
+              const iconColor =
+                hoveredButton === "prev"
+                  ? iconColorMap[prevFeature.color] || "rgb(255, 255, 255)"
+                  : "rgb(255, 255, 255)";
+              return (
+                <button
+                  onClick={() => {
+                    if (mobileScrollRef.current) {
+                      const cardWidth = mobileScrollRef.current.clientWidth;
+                      const newIndex = mobileActiveIndex - 1;
+                      mobileScrollRef.current.scrollTo({
+                        left: cardWidth * newIndex,
+                        behavior: "smooth",
+                      });
+                    }
+                  }}
+                  className="absolute left-[1px] top-1/2 -translate-y-1/2 z-20 w-[42px] h-[42px] rounded-full bg-gray-800/50 backdrop-blur-sm flex items-center justify-center transition-all duration-200"
+                  onMouseEnter={() => setHoveredButton("prev")}
+                  onMouseLeave={() => setHoveredButton(null)}
+                  aria-label="Previous card"
+                >
+                  <ChevronLeft
+                    className="w-6 h-6 transition-colors duration-200"
+                    style={{ color: iconColor }}
+                    strokeWidth={4.5}
+                  />
+                </button>
+              );
+            })()}
 
           {/* 다음 버튼 */}
-          {mobileActiveIndex < FEATURES.length - 1 && (() => {
-            const nextFeature = FEATURES[mobileActiveIndex + 1];
-            const iconColorMap: { [key: string]: string } = {
-              "from-amber-500 to-orange-600": "rgb(245, 158, 11)",
-              "from-emerald-500 to-cyan-600": "rgb(16, 185, 129)",
-              "from-purple-600 to-blue-600": "rgb(147, 51, 234)",
-              "from-pink-600 to-rose-600": "rgb(219, 39, 119)",
-              "from-lime-400 to-green-600": "rgb(163, 230, 53)",
-              "from-red-600 to-orange-600": "rgb(220, 38, 38)",
-            };
-            const iconColor = hoveredButton === "next" 
-              ? iconColorMap[nextFeature.color] || "rgb(255, 255, 255)"
-              : "rgb(255, 255, 255)";
-            return (
-              <button
-                onClick={() => {
-                  if (mobileScrollRef.current) {
-                    const cardWidth = mobileScrollRef.current.clientWidth;
-                    const newIndex = mobileActiveIndex + 1;
-                    mobileScrollRef.current.scrollTo({
-                      left: cardWidth * newIndex,
-                      behavior: "smooth",
-                    });
-                  }
-                }}
-                className="absolute right-[1px] top-1/2 -translate-y-1/2 z-20 w-[42px] h-[42px] rounded-full bg-gray-800/50 backdrop-blur-sm flex items-center justify-center transition-all duration-200"
-                onMouseEnter={() => setHoveredButton("next")}
-                onMouseLeave={() => setHoveredButton(null)}
-                aria-label="Next card"
-              >
-                <ChevronRight className="w-6 h-6 transition-colors duration-200" style={{ color: iconColor }} strokeWidth={4.5} />
-              </button>
-            );
-          })()}
+          {mobileActiveIndex < FEATURES.length - 1 &&
+            (() => {
+              const nextFeature = FEATURES[mobileActiveIndex + 1];
+              const iconColorMap: { [key: string]: string } = {
+                "from-amber-500 to-orange-600": "rgb(245, 158, 11)",
+                "from-emerald-500 to-cyan-600": "rgb(16, 185, 129)",
+                "from-purple-600 to-blue-600": "rgb(147, 51, 234)",
+                "from-pink-600 to-rose-600": "rgb(219, 39, 119)",
+                "from-lime-400 to-green-600": "rgb(163, 230, 53)",
+                "from-red-600 to-orange-600": "rgb(220, 38, 38)",
+              };
+              const iconColor =
+                hoveredButton === "next"
+                  ? iconColorMap[nextFeature.color] || "rgb(255, 255, 255)"
+                  : "rgb(255, 255, 255)";
+              return (
+                <button
+                  onClick={() => {
+                    if (mobileScrollRef.current) {
+                      const cardWidth = mobileScrollRef.current.clientWidth;
+                      const newIndex = mobileActiveIndex + 1;
+                      mobileScrollRef.current.scrollTo({
+                        left: cardWidth * newIndex,
+                        behavior: "smooth",
+                      });
+                    }
+                  }}
+                  className="absolute right-[1px] top-1/2 -translate-y-1/2 z-20 w-[42px] h-[42px] rounded-full bg-gray-800/50 backdrop-blur-sm flex items-center justify-center transition-all duration-200"
+                  onMouseEnter={() => setHoveredButton("next")}
+                  onMouseLeave={() => setHoveredButton(null)}
+                  aria-label="Next card"
+                >
+                  <ChevronRight
+                    className="w-6 h-6 transition-colors duration-200"
+                    style={{ color: iconColor }}
+                    strokeWidth={4.5}
+                  />
+                </button>
+              );
+            })()}
 
           {/* 가로 스크롤 컨테이너 */}
           <div
