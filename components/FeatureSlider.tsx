@@ -1,12 +1,14 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { WORKFLOW_STEPS } from '@/constants/workflow';
 
 const FeatureSlider = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
@@ -20,18 +22,86 @@ const FeatureSlider = () => {
     return () => clearInterval(interval);
   }, [isAutoPlaying]);
 
+  // 활성화된 버튼이 보이도록 스크롤
+  useEffect(() => {
+    if (buttonRefs.current[activeIndex] && scrollContainerRef.current) {
+      const button = buttonRefs.current[activeIndex];
+      const container = scrollContainerRef.current;
+      const buttonLeft = button.offsetLeft;
+      const buttonWidth = button.offsetWidth;
+      const containerWidth = container.offsetWidth;
+      const scrollLeft = container.scrollLeft;
+      const buttonRight = buttonLeft + buttonWidth;
+
+      // 버튼이 화면 왼쪽 밖에 있으면
+      if (buttonLeft < scrollLeft) {
+        container.scrollTo({ left: buttonLeft - 16, behavior: 'smooth' });
+      }
+      // 버튼이 화면 오른쪽 밖에 있으면
+      else if (buttonRight > scrollLeft + containerWidth) {
+        container.scrollTo({ left: buttonRight - containerWidth + 16, behavior: 'smooth' });
+      }
+    }
+  }, [activeIndex]);
+
   const handleManualSelect = (index: number) => {
     setActiveIndex(index);
     setIsAutoPlaying(false); // Stop autoplay on user interaction
   };
 
   return (
-    <div className="w-full mx-auto">
+    <div className="w-full lg:w-full mx-auto">
+      {/* Mobile: Top Category Bar */}
+      <div className="lg:hidden bg-[#050505] border-b border-gray-800 py-2.5 sm:py-4 w-[95%] mx-auto">
+        <h2 className="text-base sm:text-xl font-bold text-white mb-2.5 sm:mb-4 px-3 sm:px-4">
+          Workflow <span className="text-purple-400">Engine</span>
+        </h2>
+        <div 
+          ref={scrollContainerRef}
+          className="flex gap-1 overflow-x-auto pb-1.5 sm:pb-2 px-3 sm:px-4 scroll-smooth snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+          style={{ scrollPaddingLeft: '12px', scrollPaddingRight: '12px' }}
+        >
+          {WORKFLOW_STEPS.map((step, index) => {
+            const isActive = index === activeIndex;
+            const Icon = step.icon;
+
+            return (
+              <button
+                key={step.id}
+                ref={(el) => { buttonRefs.current[index] = el; }}
+                onClick={() => handleManualSelect(index)}
+                className={`flex-shrink-0 flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg sm:rounded-xl transition-all duration-300 relative snap-start ${
+                  isActive 
+                    ? 'bg-gray-900/80 border border-purple-500/30 shadow-[0_0_15px_rgba(139,92,246,0.15)]' 
+                    : 'bg-gray-900/30 border border-transparent hover:bg-gray-900/50'
+                }`}
+                style={{ minWidth: 'fit-content' }}
+              >
+                <div className={`p-0.5 sm:p-1 rounded sm:rounded-lg transition-colors flex-shrink-0 ${
+                  isActive ? 'bg-purple-500 text-white' : 'bg-gray-800 text-gray-500'
+                }`}>
+                  <Icon className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5" />
+                </div>
+                <span className={`font-semibold text-[9px] sm:text-[11px] leading-tight whitespace-nowrap ${
+                  isActive ? 'text-white' : 'text-gray-400'
+                }`}>
+                  {step.title}
+                </span>
+                {/* Progress bar for active state */}
+                {isActive && isAutoPlaying && (
+                  <div className="absolute bottom-0 left-0 h-[2px] bg-purple-500 animate-[width_5s_linear_forwards] w-full origin-left rounded-b-lg sm:rounded-b-xl" />
+                )}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
       {/* Container Box */}
-      <div className="bg-transparent border-0 rounded-2xl overflow-hidden shadow-2xl flex flex-col lg:flex-row h-[750px] lg:h-[600px]">
+      <div className="bg-transparent border-0 rounded-2xl overflow-hidden shadow-2xl flex flex-col lg:flex-row w-[95%] lg:w-full mx-auto h-[600px] lg:h-[600px]">
         
-        {/* Left Side: Navigation / Steps */}
-        <div className="w-full lg:w-1/3 bg-[#050505] border-b lg:border-b-0 lg:border-r border-gray-800 p-6 flex flex-col justify-center">
+        {/* Left Side: Navigation / Steps (Desktop Only) */}
+        <div className="hidden lg:flex w-full lg:w-1/3 bg-[#050505] border-b lg:border-b-0 lg:border-r border-gray-800 p-6 flex-col justify-center">
           <h2 className="text-2xl font-bold text-white mb-8 pl-4">
             Workflow <span className="text-purple-400">Engine</span>
           </h2>
@@ -82,12 +152,12 @@ const FeatureSlider = () => {
         </div>
 
         {/* Right Side: Visual Window */}
-        <div className="w-full lg:w-2/3 bg-black relative p-4 lg:p-8 overflow-hidden flex items-center justify-center">
+        <div className="w-full lg:w-2/3 bg-black relative p-3 lg:p-8 overflow-hidden flex items-center justify-center h-full">
           {/* Background decoration */}
           <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent pointer-events-none" />
           
           {/* Main Display Area */}
-          <div className="relative w-full h-full max-h-[500px] aspect-[4/3] lg:aspect-auto">
+          <div className="relative w-[90%] h-[90%] lg:w-full lg:h-full lg:max-h-[500px] lg:aspect-auto mx-auto">
              {WORKFLOW_STEPS.map((step, index) => (
                 <div
                   key={step.id}

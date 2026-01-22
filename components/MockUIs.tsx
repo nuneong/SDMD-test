@@ -289,24 +289,24 @@ export const MockResult = () => {
             <span className="text-sm font-medium text-white">{tabs.find(t => t.id === activeTab)?.label} Outputs</span>
             <span className="text-[10px] text-gray-500 bg-gray-800 px-2 py-0.5 rounded-full">{currentContent.length} items</span>
          </div>
-         <div className="flex-1 overflow-y-auto p-4 space-y-3">
+         <div className="flex-1 overflow-y-auto p-4 lg:p-3 space-y-2.5 lg:space-y-1.5">
             {currentContent.map((item) => (
-               <div key={item.id} className="bg-[#252525] border border-gray-800 rounded-lg p-3 hover:border-gray-600 transition-colors group cursor-pointer">
-                  <div className="flex items-start justify-between mb-2">
-                     <div className="flex items-center gap-2">
-                        <div className="p-1.5 bg-gray-800 rounded text-gray-300 group-hover:text-purple-400 group-hover:bg-gray-700 transition-colors">
-                           <item.icon size={14} />
+               <div key={item.id} className="bg-[#252525] border border-gray-800 rounded-lg p-3 lg:p-2 hover:border-gray-600 transition-colors group cursor-pointer scale-y-90 lg:scale-y-100 origin-top">
+                  <div className="flex items-start justify-between mb-2 lg:mb-1.5">
+                     <div className="flex items-center gap-2 lg:gap-1.5">
+                        <div className="p-1.5 lg:p-1 bg-gray-800 rounded text-gray-300 group-hover:text-purple-400 group-hover:bg-gray-700 transition-colors">
+                           <item.icon className="w-3.5 h-3.5 lg:w-3 lg:h-3" />
                         </div>
-                        <span className="text-xs font-semibold text-gray-400">{item.type}</span>
+                        <span className="text-xs lg:text-[10px] font-semibold text-gray-400">{item.type}</span>
                      </div>
-                     <span className="text-[10px] text-gray-600 font-mono">{item.date}</span>
+                     <span className="text-[10px] lg:text-[9px] text-gray-600 font-mono">{item.date}</span>
                   </div>
-                  <h4 className="text-sm font-medium text-gray-200 mb-2 group-hover:text-purple-400 transition-colors">{item.title}</h4>
-                  <div className="flex items-center gap-2 mt-2">
-                     <div className="h-1.5 flex-1 bg-gray-800 rounded overflow-hidden">
+                  <h4 className="text-sm lg:text-xs font-medium text-gray-200 mb-2 lg:mb-1 group-hover:text-purple-400 transition-colors leading-tight">{item.title}</h4>
+                  <div className="flex items-center gap-2 lg:gap-1.5 mt-2 lg:mt-1">
+                     <div className="h-1.5 lg:h-1 flex-1 bg-gray-800 rounded overflow-hidden">
                         <div className="h-full bg-gray-600 w-2/3"></div>
                      </div>
-                     <button className="text-[10px] text-purple-400 hover:text-white transition-colors opacity-0 group-hover:opacity-100">View</button>
+                     <button className="text-[10px] lg:text-[9px] text-purple-400 hover:text-white transition-colors opacity-0 group-hover:opacity-100">View</button>
                   </div>
                </div>
             ))}
@@ -397,88 +397,88 @@ const workflows = [
 ];
 
 export const MockDashboard = () => (
-  <div className="h-full w-full bg-[#0F0F0F] rounded-lg p-6 flex flex-col gap-6">
+  <div className="h-full w-full bg-[#0F0F0F] rounded-lg p-3 sm:p-6 flex flex-col gap-3 sm:gap-6">
     <div className="flex items-center justify-between">
-       <h3 className="text-lg font-semibold text-white">Overview</h3>
-       <div className="flex items-center gap-2">
-         <span className="relative flex h-2 w-2">
+       <h3 className="text-sm sm:text-lg font-semibold text-white">Overview</h3>
+       <div className="flex items-center gap-1.5 sm:gap-2">
+         <span className="relative flex h-1.5 w-1.5 sm:h-2 sm:w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            <span className="relative inline-flex rounded-full h-1.5 w-1.5 sm:h-2 sm:w-2 bg-green-500"></span>
          </span>
-         <span className="text-xs text-gray-400">System Live</span>
+         <span className="text-[10px] sm:text-xs text-gray-400">System Live</span>
        </div>
     </div>
     {/* Top Metric Cards */}
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-2 gap-2 sm:gap-4">
       {/* Total Leads */}
-      <div className="bg-gray-900/50 p-4 rounded-lg border border-gray-800 relative overflow-hidden group">
-        <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
-           <TrendingUp size={40} className="text-white" />
+      <div className="bg-gray-900/50 p-2 sm:p-4 rounded-lg border border-gray-800 relative overflow-hidden group">
+        <div className="absolute top-0 right-0 p-2 sm:p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+           <TrendingUp className="w-6 h-6 sm:w-10 sm:h-10 text-white" />
         </div>
-        <div className="flex justify-between items-start mb-2">
-          <span className="text-xs text-gray-400">Total Leads</span>
-          <TrendingUp size={14} className="text-green-500" />
+        <div className="flex justify-between items-start mb-1 sm:mb-2">
+          <span className="text-[10px] sm:text-xs text-gray-400">Total Leads</span>
+          <TrendingUp className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-green-500" />
         </div>
-        <div className="text-2xl font-bold text-white">1,248</div>
-        <div className="text-xs text-green-500 mt-1 flex items-center gap-1">
-           <span className="bg-green-500/10 px-1 rounded">+12.5%</span> vs last week
+        <div className="text-lg sm:text-2xl font-bold text-white">1,248</div>
+        <div className="text-[10px] sm:text-xs text-green-500 mt-0.5 sm:mt-1 flex items-center gap-1">
+           <span className="bg-green-500/10 px-1 rounded text-[9px] sm:text-[10px]">+12.5%</span> <span className="hidden sm:inline">vs last week</span>
         </div>
       </div>
       {/* ROI */}
-      <div className="bg-gray-900/50 p-4 rounded-lg border border-gray-800 relative overflow-hidden group">
-        <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
-           <BarChart3 size={40} className="text-white" />
+      <div className="bg-gray-900/50 p-2 sm:p-4 rounded-lg border border-gray-800 relative overflow-hidden group">
+        <div className="absolute top-0 right-0 p-2 sm:p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+           <BarChart3 className="w-6 h-6 sm:w-10 sm:h-10 text-white" />
         </div>
-        <div className="flex justify-between items-start mb-2">
-          <span className="text-xs text-gray-400">ROI</span>
-          <BarChart3 size={14} className="text-purple-400" />
+        <div className="flex justify-between items-start mb-1 sm:mb-2">
+          <span className="text-[10px] sm:text-xs text-gray-400">ROI</span>
+          <BarChart3 className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-purple-400" />
         </div>
-        <div className="text-2xl font-bold text-white">320%</div>
-        <div className="text-xs text-purple-400 mt-1 flex items-center gap-1">
-           <span className="bg-purple-500/10 px-1 rounded">Excellent</span> performance
+        <div className="text-lg sm:text-2xl font-bold text-white">320%</div>
+        <div className="text-[10px] sm:text-xs text-purple-400 mt-0.5 sm:mt-1 flex items-center gap-1">
+           <span className="bg-purple-500/10 px-1 rounded text-[9px] sm:text-[10px]">Excellent</span> <span className="hidden sm:inline">performance</span>
         </div>
       </div>
     </div>
     {/* Workflow List (Timeline Style) */}
-    <div className="flex-1 bg-gray-900/30 rounded-lg border border-gray-800 p-4 overflow-hidden flex flex-col">
-       <div className="flex items-center justify-between mb-4">
-          <h4 className="text-sm font-medium text-gray-300">Workflow</h4>
-          <button className="text-[10px] text-purple-400 hover:text-white transition-colors">View All</button>
+    <div className="flex-1 bg-gray-900/30 rounded-lg border border-gray-800 p-2.5 sm:p-4 overflow-hidden flex flex-col min-h-0">
+       <div className="flex items-center justify-between mb-2 sm:mb-4">
+          <h4 className="text-xs sm:text-sm font-medium text-gray-300">Workflow</h4>
+          <button className="text-[9px] sm:text-[10px] text-purple-400 hover:text-white transition-colors">View All</button>
        </div>
-       <div className="flex-1 overflow-y-auto pr-1 relative"> 
+       <div className="flex-1 overflow-y-auto pr-1 relative min-h-0"> 
           {/* Vertical Timeline Line */}
-          <div className="absolute left-[11px] top-2 bottom-2 w-0.5 bg-gray-800"></div>
-          <div className="space-y-4">
+          <div className="absolute left-[9px] sm:left-[11px] top-2 bottom-2 w-0.5 bg-gray-800"></div>
+          <div className="space-y-2 sm:space-y-4">
              {workflows.map((wf) => (
-                <div key={wf.id} className="relative flex items-start gap-4 group">
+                <div key={wf.id} className="relative flex items-start gap-2 sm:gap-4 group">
                    {/* Node Icon */}
                    <div className={`
-                      z-10 w-6 h-6 rounded-full flex items-center justify-center border-2 shrink-0 bg-[#0F0F0F]
+                      z-10 w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center border-2 shrink-0 bg-[#0F0F0F]
                       ${wf.status === 'done' ? 'border-green-500 text-green-500' : 
                         wf.status === 'active' ? 'border-purple-500 text-purple-400 shadow-[0_0_10px_rgba(139,92,246,0.5)]' : 
                         'border-gray-700 text-gray-600'}
                    `}>
-                      {wf.status === 'done' && <CheckCircle2 size={12} />}
-                      {wf.status === 'active' && <Loader2 size={12} className="animate-spin" />}
-                      {wf.status === 'pending' && <Clock size={12} />}
+                      {wf.status === 'done' && <CheckCircle2 className="w-2.5 h-2.5 sm:w-3 sm:h-3" />}
+                      {wf.status === 'active' && <Loader2 className="w-2.5 h-2.5 sm:w-3 sm:h-3 animate-spin" />}
+                      {wf.status === 'pending' && <Clock className="w-2.5 h-2.5 sm:w-3 sm:h-3" />}
                    </div>
                    {/* Content Card */}
-                   <div className="flex-1 flex flex-col gap-2 p-3 bg-[#161616] rounded border border-gray-800 hover:border-gray-700 transition-colors">
+                   <div className="flex-1 flex flex-col gap-1.5 sm:gap-2 p-3 sm:p-3 bg-[#161616] rounded border border-gray-800 hover:border-gray-700 transition-colors">
                       <div className="flex justify-between items-start">
-                         <div className="flex items-center gap-2">
+                         <div className="flex items-center gap-1.5 sm:gap-2">
                             {/* User Avatar */}
-                            <div className={`w-5 h-5 rounded-full flex items-center justify-center text-[8px] font-bold text-white ${
+                            <div className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center text-[7px] sm:text-[8px] font-bold text-white ${
                                wf.id === 1 ? 'bg-blue-600' : wf.id === 2 ? 'bg-emerald-600' : wf.id === 3 ? 'bg-purple-600' : 'bg-orange-600'
                             }`}>
                                {wf.user.charAt(0)}
                             </div>
                             <div>
-                               <div className="text-xs font-medium text-gray-200">{wf.task}</div>
-                               <div className="text-[10px] text-gray-500">{wf.user}</div>
+                               <div className="text-[10px] sm:text-xs font-medium text-gray-200 leading-tight">{wf.task}</div>
+                               <div className="text-[9px] sm:text-[10px] text-gray-500">{wf.user}</div>
                             </div>
                          </div>
                          {/* Status Text Badge */}
-                         <div className={`text-[10px] px-2 py-0.5 rounded-full border ${
+                         <div className={`text-[9px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 rounded-full border ${
                             wf.status === 'done' ? 'bg-green-500/10 border-green-500/20 text-green-400' : 
                             wf.status === 'pending' ? 'bg-gray-800 border-gray-700 text-gray-400' :
                             'bg-purple-500/10 border-purple-500/20 text-purple-400'
@@ -487,7 +487,7 @@ export const MockDashboard = () => (
                          </div>
                       </div>
                       {/* Progress Bar */}
-                      <div className="w-full bg-gray-800 h-1.5 rounded-full overflow-hidden mt-1">
+                      <div className="w-full bg-gray-800 h-1 sm:h-1.5 rounded-full overflow-hidden mt-1 sm:mt-1">
                          <div 
                             className={`h-full rounded-full transition-all duration-1000 ${wf.status === 'done' ? 'bg-green-500' : 'bg-purple-500'}`} 
                             style={{ width: `${wf.progress}%` }}
