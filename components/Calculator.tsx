@@ -45,34 +45,34 @@ const Calculator: React.FC = () => {
           />
         ))}
         {/* Savings Result Card - Placed naturally at the end */}
-        <div className="col-span-2 md:col-span-2 flex flex-col justify-center p-6 rounded-2xl border border-purple-500/30 bg-gradient-to-br from-[#0A0A0C] to-purple-500/10 relative overflow-hidden group min-h-[160px]">
+        <div className="col-span-2 md:col-span-2 flex flex-col justify-center p-4 lg:p-6 rounded-2xl border border-purple-500/30 bg-gradient-to-br from-[#0A0A0C] to-purple-500/10 relative overflow-hidden group" style={{ minHeight: 'calc(160px * 2/3)' }}>
           
           {/* Background decorative effects */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-[80px] -mr-32 -mt-32 pointer-events-none"></div>
           <div className="absolute bottom-0 left-0 w-40 h-40 bg-blue-600/10 rounded-full blur-[60px] -ml-20 -mb-20 pointer-events-none"></div>
-          <div className="relative z-10 flex flex-col sm:flex-row items-center justify-around gap-6 h-full text-center sm:text-left">
+          <div className="relative z-10 flex flex-col sm:flex-row items-center justify-around gap-4 lg:gap-6 h-full text-center sm:text-left">
             <div className="flex flex-col items-center sm:items-start">
-              <span className="text-gray-400 text-sm font-medium uppercase tracking-wider mb-2">월간 절감액</span>
-              <div className="flex items-baseline gap-2">
-                <span className="text-3xl font-bold text-white tabular-nums tracking-tight">
+              <span className="text-gray-400 text-xs lg:text-sm font-medium uppercase tracking-wider mb-1 lg:mb-2">월간 절감액</span>
+              <div className="flex items-baseline gap-1.5 lg:gap-2">
+                <span className="text-2xl lg:text-3xl font-bold text-white tabular-nums tracking-tight">
                   {formatCurrency(totals.monthlySavings)}
                 </span>
-                <span className="text-lg text-gray-400 tabular-nums">
+                <span className="text-sm lg:text-lg text-gray-400 tabular-nums">
                   {totals.monthlyHours}hrs
                 </span>
               </div>
             </div>
             
             {/* Divider for desktop */}
-            <div className="hidden sm:block w-px h-16 bg-[#1F1F25]/50"></div>
+            <div className="hidden sm:block w-px h-12 lg:h-16 bg-[#1F1F25]/50"></div>
             
             <div className="flex flex-col items-center sm:items-start">
-              <span className="text-purple-400 text-sm font-medium uppercase tracking-wider mb-2">연간 절감액</span>
-              <div className="flex items-baseline gap-2">
-                <span className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-white tabular-nums tracking-tight">
+              <span className="text-purple-400 text-xs lg:text-sm font-medium uppercase tracking-wider mb-1 lg:mb-2">연간 절감액</span>
+              <div className="flex items-baseline gap-1.5 lg:gap-2">
+                <span className="text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-white tabular-nums tracking-tight">
                   {formatCurrency(totals.yearlySavings)}
                 </span>
-                <span className="text-xl text-gray-400 tabular-nums">
+                <span className="text-base lg:text-xl text-gray-400 tabular-nums">
                   {totals.yearlyHours}hrs
                 </span>
               </div>

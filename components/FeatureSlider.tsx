@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, ChevronLeft } from 'lucide-react';
 import { WORKFLOW_STEPS } from '@/constants/workflow';
 
 const FeatureSlider = () => {
@@ -47,6 +47,16 @@ const FeatureSlider = () => {
   const handleManualSelect = (index: number) => {
     setActiveIndex(index);
     setIsAutoPlaying(false); // Stop autoplay on user interaction
+  };
+
+  const handlePrevious = () => {
+    setActiveIndex((prev) => (prev - 1 + WORKFLOW_STEPS.length) % WORKFLOW_STEPS.length);
+    setIsAutoPlaying(false);
+  };
+
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev + 1) % WORKFLOW_STEPS.length);
+    setIsAutoPlaying(false);
   };
 
   return (
@@ -156,6 +166,22 @@ const FeatureSlider = () => {
           {/* Background decoration */}
           <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent pointer-events-none" />
           
+          {/* Mobile Navigation Buttons */}
+          <button
+            onClick={handlePrevious}
+            className="lg:hidden absolute left-2 z-20 w-10 h-10 rounded-full bg-gray-900/80 border border-gray-700 hover:border-purple-500/50 flex items-center justify-center text-white transition-all hover:bg-gray-800 shadow-lg"
+            aria-label="Previous"
+          >
+            <ChevronLeft size={20} className="text-purple-400" />
+          </button>
+          <button
+            onClick={handleNext}
+            className="lg:hidden absolute right-2 z-20 w-10 h-10 rounded-full bg-gray-900/80 border border-gray-700 hover:border-purple-500/50 flex items-center justify-center text-white transition-all hover:bg-gray-800 shadow-lg"
+            aria-label="Next"
+          >
+            <ChevronRight size={20} className="text-purple-400" />
+          </button>
+          
           {/* Main Display Area */}
           <div className="relative w-[90%] h-[90%] lg:w-full lg:h-full lg:max-h-[500px] lg:aspect-auto mx-auto">
              {WORKFLOW_STEPS.map((step, index) => (
@@ -163,10 +189,10 @@ const FeatureSlider = () => {
                   key={step.id}
                   className={`absolute inset-0 transition-all duration-500 ease-in-out transform ${
                     index === activeIndex 
-                      ? 'opacity-100 translate-y-0 scale-100 z-10' 
+                      ? 'opacity-100 translate-x-0 translate-y-0 scale-100 z-10' 
                       : index < activeIndex 
-                        ? 'opacity-0 -translate-y-8 scale-95 z-0' 
-                        : 'opacity-0 translate-y-8 scale-95 z-0'
+                        ? 'opacity-0 -translate-x-full lg:-translate-y-8 scale-95 z-0' 
+                        : 'opacity-0 translate-x-full lg:translate-y-8 scale-95 z-0'
                   }`}
                 >
                   <div className="w-full h-full bg-[#111] rounded-2xl border border-gray-800 shadow-2xl shadow-black overflow-hidden relative group">
